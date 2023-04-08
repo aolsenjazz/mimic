@@ -17,7 +17,7 @@ Mimic is an [electron](https://www.electronjs.org/) application boostrapped with
 
 ## Device Support
 
-Mimic repurposes the driver files created by and for [SuperController](https://www.github.com/aolsenjazz/super-controller). If a device is supported, it will have a driver file there. Supporting more devices make this software more useful for everyone so if you are able to write drivers for your devices, please do so! If not, please [open a pull request](https://github.com/aolsenjazz/super-controller/pulls) and we'll work together to get your device supported.
+Mimic repurposes the driver files created by and for [SuperController](https://www.github.com/aolsenjazz/super-controller). If a device is supported, it will have a driver file there. Supporting more devices makes this software more useful for everyone so if you are able to write drivers for your devices, please do so! If not, please [open a pull request](https://github.com/aolsenjazz/mimic/pulls) and we'll work together to get your device supported.
 
 ## Build + run locally
 
