@@ -7,7 +7,6 @@
     "jsx": "react-jsx",
     "strict": true,
     "sourceMap": true,
-    "baseUrl": "./src",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -20,7 +19,11 @@
     "useUnknownInCatchVariables": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "outDir": ".erb/dll"
+    "outDir": ".erb/dll",
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["packages/super-controller/src/shared/*"]
+    }
   },
   "exclude": [
     "test",

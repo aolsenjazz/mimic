@@ -1,0 +1,3 @@
+[submodule "packages/super-controller"]
+	path = packages/super-controller
+	url = https://github.com/aolsenjazz/super-controller
