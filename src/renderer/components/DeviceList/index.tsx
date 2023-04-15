@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { ConnectableDevice } from '../../../connectable-device';
 
+import NoDevicesView from '../DevicePanel/NoDevicesView';
 import DeviceListItem from './DeviceListItem';
 
 type PropTypes = {
@@ -21,7 +22,8 @@ export default function DeviceList(props: PropTypes) {
       const dev = devices.length > 0 ? devices[0] : undefined;
       setActiveDev(dev);
     } else {
-      const isSelectedHere = devices.filter((d) => d.id === activeDev.id);
+      const isSelectedHere =
+        devices.filter((d) => d.id === activeDev.id).length > 0;
 
       // if the currently-selected device is no longer avail, update
       if (!isSelectedHere) {
@@ -50,7 +52,7 @@ export default function DeviceList(props: PropTypes) {
 
   return (
     <div id="device-list" className="top-level">
-      {elements}
+      {elements.length > 0 ? elements : <NoDevicesView />}
     </div>
   );
 }

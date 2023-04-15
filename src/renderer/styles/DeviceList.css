@@ -5,6 +5,7 @@
   text-align: right;
   box-shadow: 1px 0 1px #dbd7d8;
   overflow-y: overlay;
+  position: relative;
   max-height: calc(100vh - 30px);
 }
 
@@ -89,6 +90,7 @@
   font-weight: normal;
   margin-left: 16px;
   line-height: 14px;
+  margin-top: -1px;
 }
 
 .device-list-item .connected {

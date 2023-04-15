@@ -1,0 +1,11 @@
+#how-to-connect {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: calc(50vh);
+  transform: translateY(-50%);
+}
+
+#how-to-connect p {
+  margin-bottom: 20px;
+  color: #0071bc;
+}

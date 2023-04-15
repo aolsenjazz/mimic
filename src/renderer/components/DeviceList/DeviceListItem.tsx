@@ -50,11 +50,7 @@ export default function DeviceListItem(props: PropTypes) {
               devices={devices}
               deviceId={id}
             />
-            <CloseButton
-              deviceId={id}
-              setDevices={setDevices}
-              devices={devices}
-            />
+            <CloseButton deviceId={id} />
           </div>
         </div>
         <div className={`connection-color ${cssClassFor(connected)}`} />

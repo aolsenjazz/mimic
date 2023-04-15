@@ -23,6 +23,7 @@ export class Background {
   initIpc() {
     ipcMain.on(REMOVE, (_e: Event, id: string) => {
       this.removeDevice(id);
+      windowService.sendDevices(Array.from(this.connectableDevices.values()));
     });
 
     // When the frontend as for OS details, send them

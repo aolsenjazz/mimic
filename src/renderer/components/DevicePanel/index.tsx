@@ -1,7 +1,7 @@
 import { DeviceDriver } from '@shared/driver-types';
 
 import DeviceLayoutWrapper from './DeviceLayoutWrapper';
-import NoDevicesView from './NoDevicesView';
+import HowToConnect from './HowToConnect';
 
 type PropTypes = {
   driver: DeviceDriver | undefined;
@@ -13,7 +13,7 @@ export default function DevicePanel(props: PropTypes) {
   let Element: React.ReactElement;
 
   if (driver === undefined) {
-    Element = <NoDevicesView />;
+    Element = <HowToConnect />;
   } else {
     Element = <DeviceLayoutWrapper driver={driver} />;
   }
