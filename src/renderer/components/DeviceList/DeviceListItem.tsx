@@ -1,6 +1,10 @@
 import { DeviceDriver } from '@shared/driver-types';
 
-import DeviceIcon from './DeviceIcon';
+import { ConnectableDevice } from '../../../connectable-device';
+
+import DeviceIcon from '../DeviceIcon';
+import CloseButton from './CloseButton';
+import PowerButton from './PowerButton';
 
 function cssClassFor(connected: boolean) {
   return connected ? 'connected' : 'disconnected';
@@ -10,25 +14,20 @@ function statusFor(connected: boolean) {
   return connected ? 'Connected' : 'Disconnected';
 }
 
-function reformatId(id: string, siblingIndex: number) {
-  const lastSpaceIdx = id.lastIndexOf(' ');
-  const deviceName = id.substring(0, lastSpaceIdx);
-
-  return siblingIndex === 0 ? deviceName : `${deviceName} (${siblingIndex})`;
-}
-
 type PropTypes = {
   name: string;
   id: string;
-  siblingIndex: number;
   onClick: () => void;
   active: boolean;
   connected: boolean;
   driver: DeviceDriver;
+  setDevices: (devices: ConnectableDevice[]) => void;
+  devices: ConnectableDevice[];
 };
 
 export default function DeviceListItem(props: PropTypes) {
-  const { onClick, active, connected, name, siblingIndex, id, driver } = props;
+  const { onClick, active, connected, name, id, driver, devices, setDevices } =
+    props;
 
   return (
     <div className={`device-list-item ${active ? 'active' : ''}`}>
@@ -42,8 +41,22 @@ export default function DeviceListItem(props: PropTypes) {
         tabIndex={0}
         onKeyDown={onClick}
       >
-        <h2>{name}</h2>
-        <p className="id">{reformatId(id, siblingIndex)}</p>
+        <div className="heading-line">
+          <h2>{name}</h2>
+          <div className="heading-line-controls">
+            <PowerButton
+              power={connected}
+              setDevices={setDevices}
+              devices={devices}
+              deviceId={id}
+            />
+            <CloseButton
+              deviceId={id}
+              setDevices={setDevices}
+              devices={devices}
+            />
+          </div>
+        </div>
         <div className={`connection-color ${cssClassFor(connected)}`} />
         <p className="connection-status">{statusFor(connected)}</p>
       </div>

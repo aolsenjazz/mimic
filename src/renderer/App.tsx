@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { ConnectableDevice } from '../connectable-device';
+import { AdapterDevice } from '../adapter-device';
 
 import TitleBar from './components/TitleBar';
 import DeviceList from './components/DeviceList';
@@ -20,13 +21,19 @@ export default function App() {
   const [devices, setDevices] = useState<ConnectableDevice[]>([]);
   const [activeDev, setActiveDev] = useState<ConnectableDevice | undefined>();
 
+  // when background intialized devices changes, update here
   useEffect(() => {
-    const unsubscribe = deviceService.onChange((devs) => {
+    const cb = (devs: ConnectableDevice[]) => {
       setDevices(
-        devs.map((d) => new ConnectableDevice(d.driver, d.siblingIndex))
+        devs.map((d) => {
+          return d.type === 'adapter'
+            ? new AdapterDevice(d.driver, d.siblingIndex)
+            : new ConnectableDevice(d.driver, d.siblingIndex);
+        })
       );
-    });
+    };
 
+    const unsubscribe = deviceService.onChange(cb);
     return () => unsubscribe();
   }, []);
 
@@ -38,6 +45,7 @@ export default function App() {
           devices={devices}
           activeDev={activeDev}
           setActiveDev={setActiveDev}
+          setDevices={setDevices}
         />
         <DevicePanel driver={activeDev} />
       </div>

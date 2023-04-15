@@ -6,6 +6,7 @@ export class ConnectableDevice implements DeviceDriver {
   driver: DeviceDriver;
 
   siblingIndex: number;
+
   id: string;
 
   constructor(driver: DeviceDriver, siblingIndex: number) {
@@ -44,5 +45,9 @@ export class ConnectableDevice implements DeviceDriver {
 
   get style() {
     return this.driver.style;
+  }
+
+  get keyboard() {
+    return this.driver.keyboard;
   }
 }

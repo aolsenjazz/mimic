@@ -11,6 +11,7 @@ module.exports = {
     'global-require': 'off',
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
+    'no-unused-vars': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

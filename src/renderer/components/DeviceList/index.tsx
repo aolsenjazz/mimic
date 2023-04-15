@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
 
-import { ConnectableDevice } from '../../connectable-device';
+import { ConnectableDevice } from '../../../connectable-device';
 
 import DeviceListItem from './DeviceListItem';
 
 type PropTypes = {
   devices: ConnectableDevice[];
   setActiveDev: (dev: ConnectableDevice | undefined) => void;
+  setDevices: (dev: ConnectableDevice[]) => void;
   activeDev: ConnectableDevice | undefined;
 };
 
 export default function DeviceList(props: PropTypes) {
-  const { devices, setActiveDev, activeDev } = props;
+  const { devices, setActiveDev, activeDev, setDevices } = props;
 
   // Updated selectedId when anything changes
   useEffect(() => {
@@ -41,7 +42,8 @@ export default function DeviceList(props: PropTypes) {
         active={activeDev !== undefined && activeDev.id === device.id}
         connected={device.connected}
         name={device.name}
-        siblingIndex={device.siblingIndex}
+        setDevices={setDevices}
+        devices={devices}
       />
     );
   });

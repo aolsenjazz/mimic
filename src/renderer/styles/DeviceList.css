@@ -12,7 +12,7 @@
   width: 220px;
   position: relative;
   display: inline-block;
-  height: 49px;
+  height: 40px;
   text-align: left;
   border-bottom: 1px solid #e6e6e6;
   padding-bottom: 4px;
@@ -39,6 +39,46 @@
   margin-bottom: 2px;
 }
 
+.device-list-item .heading-line {
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+}
+
+.device-list-item .heading-line h2 {
+  flex: 1 0 0;
+  overflow: hidden;
+}
+
+.device-list-item .heading-line .heading-line-controls {
+  flex: 0 0 44px;
+  vertical-align: top;
+  margin-top: -6px;
+  display: none;
+}
+
+.device-list-item:hover .heading-line .heading-line-controls {
+  display: inline-block !important;
+}
+
+.device-list-item .heading-line .heading-line-controls > * {
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.device-list-item .heading-line .heading-line-controls .close-button {
+  color: #4f4f4f;
+}
+
+.device-list-item .heading-line .heading-line-controls .close-button:hover {
+  color: black;
+  opacity: 0.8;
+}
+
+.device-list-item .heading-line > * {
+  display: inline-block;
+}
+
 .device-list-item p {
   color: #808080;
 }
@@ -51,14 +91,9 @@
   line-height: 14px;
 }
 
-.device-list-item .configured {
+.device-list-item .connected {
   background-color: #61c355;
   border: solid 1px #52a43b;
-}
-
-.device-list-item .connected {
-  background-color: #f5be4f;
-  border: solid 1px #d89d3d;
 }
 
 .device-list-item .disconnected {
