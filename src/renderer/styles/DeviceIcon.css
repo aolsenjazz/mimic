@@ -1,0 +1,90 @@
+.device-icon {
+  width: 100% !important;
+  border: 1px solid #808080;
+  position: relative;
+}
+
+.device-icon .input-grid {
+  position: absolute !important;
+}
+
+.device-icon .input-container {
+  display: inline-block;
+  float: left;
+  position: relative;
+}
+
+.device-icon .pad {
+  position: absolute;
+  background-color: #808080;
+  top: 50%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.device-icon.active .pad,
+.device-icon.active .key-black {
+  background-color: #3a84e9;
+}
+
+.device-icon.active .key-white,
+.device-icon.active .keyboard-container {
+  border-color: #3a84e9;
+}
+
+.device-icon .keyboard-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid #808080;
+  border-right: 1px solid #808080;
+}
+
+.device-icon .octave {
+  height: 100%;
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.device-icon .key-black {
+  position: absolute;
+  top: 0;
+  height: 60%;
+  width: 9%;
+  background-color: #808080;
+}
+
+.device-icon .key-white {
+  height: 100%;
+  flex: 1;
+  vertical-align: top;
+  border-left: 1px solid #808080;
+}
+
+.device-icon .key {
+  display: inline-block;
+  top: 0;
+}
+
+.device-icon .key-white:last-of-type {
+  border-right: 1px solid #808080;
+}
+
+.device-icon .key-black {
+  margin-left: 1px;
+}
+
+.device-icon .svg-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.device-icon svg {
+  padding-top: 3px;
+  padding-bottom: 1px;
+  max-width: 70%;
+  margin-left: -50%;
+  padding-left: 65%;
+}

@@ -1,0 +1,36 @@
+#device-action {
+  width: 80%;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+  font-family: Arial;
+}
+
+.device-container {
+  height: 100%;
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+}
+
+.device-container .warning-container {
+  height: 100%;
+  right: 0;
+  position: absolute;
+  width: 40px;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+}
+
+.device-container .warning-container .warning-icon {
+  margin-top: auto;
+  align-self: flex-end;
+}

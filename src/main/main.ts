@@ -2,9 +2,11 @@ import path from 'path';
 import { app, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import os from 'os';
 
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import { Background } from './background';
 
 class AppUpdater {
   constructor() {
@@ -60,7 +62,12 @@ const createWindow = async () => {
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
-    height: 728,
+    height: 600,
+    transparent: true,
+    frame: false,
+    minHeight: 312,
+    minWidth: 850,
+    titleBarStyle: os.platform() === 'darwin' ? 'hiddenInset' : 'default',
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -86,7 +93,9 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  const menuBuilder = new MenuBuilder(mainWindow);
+  const background = new Background();
+
+  const menuBuilder = new MenuBuilder(mainWindow, background);
   menuBuilder.buildMenu();
 
   // eslint-disable-next-line no-new

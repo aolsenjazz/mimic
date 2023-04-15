@@ -10,6 +10,7 @@ module.exports = {
     'import/no-import-module-exports': 'off',
     'global-require': 'off',
     'import/prefer-default-export': 'off',
+    'no-plusplus': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

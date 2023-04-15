@@ -22,7 +22,9 @@
     "outDir": ".erb/dll",
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["packages/super-controller/src/shared/*"]
+      "@shared/*": ["packages/super-controller/src/shared/*"],
+      "@sc/*": ["packages/super-controller/src/*"],
+      "@assets/*": ["src/renderer/assets/*"]
     }
   },
   "exclude": [

@@ -1,6 +1,11 @@
+import { HostService, DeviceService } from '../main/preload';
+
 declare global {
   // eslint-disable-next-line no-unused-vars
-  interface Window {}
+  interface Window {
+    hostService: HostService;
+    deviceService: DeviceService;
+  }
 }
 
 export {};

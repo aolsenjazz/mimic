@@ -6,6 +6,10 @@ import {
   MenuItemConstructorOptions,
 } from 'electron';
 
+import { DRIVERS } from '@shared/drivers';
+
+import type { Background } from './background';
+
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
   submenu?: DarwinMenuItemConstructorOptions[] | Menu;
@@ -14,8 +18,11 @@ interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
 
-  constructor(mainWindow: BrowserWindow) {
+  background: Background;
+
+  constructor(mainWindow: BrowserWindow, background: Background) {
     this.mainWindow = mainWindow;
+    this.background = background;
   }
 
   buildMenu(): Menu {
@@ -138,6 +145,20 @@ export default class MenuBuilder {
         },
       ],
     };
+    const drivers = Array.from(DRIVERS.values()).filter(
+      (d) => d.name !== 'Anonymous'
+    );
+    const subMenuNew: DarwinMenuItemConstructorOptions = {
+      label: 'New',
+      submenu: drivers.map((driver) => {
+        return {
+          label: driver.name,
+          click: () => {
+            this.background.addDevice(driver.name);
+          },
+        };
+      }),
+    };
     const subMenuWindow: DarwinMenuItemConstructorOptions = {
       label: 'Window',
       submenu: [
@@ -189,7 +210,14 @@ export default class MenuBuilder {
         ? subMenuViewDev
         : subMenuViewProd;
 
-    return [subMenuAbout, subMenuEdit, subMenuView, subMenuWindow, subMenuHelp];
+    return [
+      subMenuAbout,
+      subMenuNew,
+      subMenuEdit,
+      subMenuView,
+      subMenuWindow,
+      subMenuHelp,
+    ];
   }
 
   buildDefaultTemplate() {

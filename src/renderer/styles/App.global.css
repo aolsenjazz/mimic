@@ -1,37 +1,35 @@
+@import './ConfigPanel.css';
+@import './IosSelect.css';
+@import './IosButton.css';
+@import './DeviceList.css';
+@import './TitleBar.css';
+@import './DeviceView.css';
+@import './DevicePanel.css';
+@import './DeviceLayout.css';
+@import './DeviceIcon.css';
+@import './HelpTip.css';
+@import './Translator.css';
+@import './AdapterView.css';
+@import './DriverRequestButton.css';
+@import './WarningIcon.css';
+@import './SwitchPanel.css';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*::-webkit-scrollbar {
+  background: transparent;
+  width: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 1em;
+}
+
 body {
-  position: relative;
-  color: white;
   height: 100vh;
-  background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  );
-  font-family: sans-serif;
-  overflow-y: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-button {
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  appearance: none;
-  font-size: 1.3rem;
-  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-  transition: all ease-in 0.1s;
-  cursor: pointer;
-  opacity: 0.9;
-}
-
-button:hover {
-  transform: scale(1.05);
-  opacity: 1;
 }
 
 li {
@@ -40,19 +38,67 @@ li {
 
 a {
   text-decoration: none;
-  height: fit-content;
-  width: fit-content;
-  margin: 10px;
+  user-select: none;
 }
 
 a:hover {
   opacity: 1;
   text-decoration: none;
+  cursor: pointer;
 }
 
-.Hello {
+*:focus {
+  outline: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #272727;
+  font-family: Arial;
+  user-select: none;
+}
+
+h1 {
+  font-size: 0.8em;
+  color: #4a4848;
+}
+
+#root {
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
+  flex-direction: column;
+}
+
+#main-content {
+  flex: 1;
+  display: flex;
+}
+
+.top-level {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+}
+
+.center-vert {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.border-red {
+  border: 1px solid red !important;
+}
+
+.border-green {
+  border: 1px solid green !important;
+}
+
+.hoverable {
+  cursor: pointer !important;
 }
