@@ -3,14 +3,13 @@
 @import './DeviceList.css';
 @import './TitleBar.css';
 @import './DeviceView.css';
-@import './DevicePanel.css';
 @import './DeviceLayout.css';
 @import './DeviceIcon.css';
 @import './HelpTip.css';
-@import './AdapterView.css';
 @import './WarningIcon.css';
 @import './SwitchPanel.css';
 @import './HowToConnect.css';
+@import './DevicePanel.css';
 
 * {
   margin: 0;
@@ -75,6 +74,7 @@ h1 {
 #main-content {
   flex: 1;
   display: flex;
+  height: calc(100% - 30px);
 }
 
 .top-level {
