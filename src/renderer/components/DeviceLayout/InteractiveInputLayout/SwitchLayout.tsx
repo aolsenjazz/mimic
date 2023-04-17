@@ -1,5 +1,5 @@
 type PropTypes = {
-  steps: NumberArrayWithStatus[];
+  steps: number[][];
   style: { transform?: string } | undefined;
 };
 
@@ -7,7 +7,7 @@ export function SwitchLayout(props: PropTypes) {
   const { steps, style } = props;
 
   const nSteps = steps.length;
-  let stepIdx = 0;
+  const stepIdx = 0;
 
   const position = stepIdx / nSteps;
   const iStyle = {

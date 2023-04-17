@@ -6,15 +6,7 @@ type PropTypes = {
   deviceHeight: number;
 };
 
-/**
- * Simplified graphical representation of an InputGrid containing input controls
- *
- * @param props Component props
- * @param props.inputGrid Driver for this InputGrid
- * @param props.deviceWidth Width (in inches) of this device
- * @param props.deviceHeight Height (in inches) of this device
- */
-const InputGridIcon = (props: PropTypes) => {
+export default function InputGridIcon(props: PropTypes) {
   const { inputGrid, deviceWidth, deviceHeight } = props;
 
   const igStyle = {
@@ -56,6 +48,4 @@ const InputGridIcon = (props: PropTypes) => {
       })}
     </div>
   );
-};
-
-export default InputGridIcon;
+}

@@ -13,7 +13,7 @@ export default function DeviceLayoutWrapper(
   return (
     <>
       <DeviceLayout driver={driver} />
-      <div className="warning-container"></div>
+      <div className="warning-container" />
     </>
   );
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { DeviceDriver } from '@shared/driver-types';
 
 import { UsbIcon } from '../UsbIcon';
@@ -10,13 +9,6 @@ type PropTypes = {
   active: boolean;
 };
 
-/**
- * Simplified graphical representation of a hardware device
- *
- * @param props Component props
- * @param props.driver Driver for the given device
- * @param props.active Is the current device selected?
- */
 export default function DeviceLayout(props: PropTypes) {
   const { driver, active } = props;
 
@@ -55,5 +47,5 @@ export default function DeviceLayout(props: PropTypes) {
     );
   }
 
-  return <>{Element}</>;
+  return Element;
 }

@@ -53,7 +53,7 @@ type PropTypes = {
   deviceHeight: number;
 };
 
-const InputGridLayout = (props: PropTypes) => {
+export default function InputGridLayout(props: PropTypes) {
   const { inputGrid, deviceHeight, deviceWidth } = props;
 
   const style = {
@@ -88,6 +88,4 @@ const InputGridLayout = (props: PropTypes) => {
       ))}
     </div>
   );
-};
-
-export default InputGridLayout;
+}

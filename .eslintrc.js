@@ -20,6 +20,10 @@ module.exports = {
     tsconfigRootDir: __dirname,
     createDefaultProgram: true,
   },
+  globals: {
+    JSX: 'readonly',
+    React: 'readonly',
+  },
   settings: {
     'import/resolver': {
       // See https://github.com/benmosher/eslint-plugin-import/issues/1396#issuecomment-575727774 for line below
