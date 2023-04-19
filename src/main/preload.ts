@@ -1,7 +1,5 @@
 import { IpcRendererEvent, ipcRenderer, contextBridge } from 'electron';
 
-import { ConnectableDevice } from '../connectable-device';
-
 import { DEVICES, OS, REMOVE, POWERON, POWEROFF } from '../ipc-channels';
 
 /**
@@ -28,7 +26,7 @@ const deviceService = {
    * @param func The callback to be invoked
    */
   // eslint-disable-next-line no-unused-vars
-  onChange: (func: (devices: ConnectableDevice[]) => void) => {
+  onChange: (func: (deviceJSON: string) => void) => {
     return addOnChangeListener(DEVICES, func);
   },
 

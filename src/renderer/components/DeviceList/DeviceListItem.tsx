@@ -1,6 +1,6 @@
 import { DeviceDriver } from '@shared/driver-types';
 
-import { ConnectableDevice } from '../../../connectable-device';
+import { ConnectableDevice } from '@shared/connectable-device';
 
 import DeviceIcon from '../DeviceIcon';
 import CloseButton from './CloseButton';

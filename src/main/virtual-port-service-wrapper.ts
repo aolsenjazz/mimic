@@ -5,6 +5,8 @@ import { VirtualPortService } from '@sc/main/port-service/virtual-port-service';
 import { DeviceDriver } from '@shared/driver-types';
 import { PortPair } from '@sc/main/port-service/port-pair';
 
+import { windowService } from './window-service';
+
 // Shim VirtualInput to use only device name as display name
 class VirtualInputShim extends VirtualInput {
   get displayName() {
@@ -30,6 +32,9 @@ class VirtualPortServiceShim extends VirtualPortService {
     const portPair = new PortPair(iPort, oPort);
 
     portPair.open();
+    portPair.onMessage((_delta, msg) => {
+      windowService.sendMsg(id, msg);
+    });
 
     this.ports.set(id, portPair);
   }

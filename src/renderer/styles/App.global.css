@@ -10,6 +10,7 @@
 @import './SwitchPanel.css';
 @import './HowToConnect.css';
 @import './DevicePanel.css';
+@import './Keyboard.css';
 
 * {
   margin: 0;

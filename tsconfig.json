@@ -7,6 +7,7 @@
     "jsx": "react-jsx",
     "strict": true,
     "sourceMap": true,
+    "baseUrl": ".",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -20,9 +21,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "outDir": ".erb/dll",
-    "baseUrl": ".",
     "paths": {
-      "@shared/*": ["packages/super-controller/src/shared/*"],
+      "@shared/*": ["packages/super-controller/src/shared/*", "src/shared/*"],
       "@sc/*": ["packages/super-controller/src/*"],
       "@assets/*": ["src/renderer/assets/*"]
     }

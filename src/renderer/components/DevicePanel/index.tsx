@@ -1,21 +1,21 @@
-import { DeviceDriver } from '@shared/driver-types';
+import { ConnectableDevice } from '@shared/connectable-device';
 
 import DeviceLayoutWrapper from './DeviceLayoutWrapper';
 import HowToConnect from './HowToConnect';
 
 type PropTypes = {
-  driver: DeviceDriver | undefined;
+  device: ConnectableDevice | undefined;
 };
 
 export default function DevicePanel(props: PropTypes) {
-  const { driver } = props;
+  const { device } = props;
 
   let Element: React.ReactElement;
 
-  if (driver === undefined) {
+  if (device === undefined) {
     Element = <HowToConnect />;
   } else {
-    Element = <DeviceLayoutWrapper driver={driver} />;
+    Element = <DeviceLayoutWrapper device={device} />;
   }
 
   return (

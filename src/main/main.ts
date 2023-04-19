@@ -70,6 +70,7 @@ const createWindow = async () => {
     titleBarStyle: os.platform() === 'darwin' ? 'hiddenInset' : 'default',
     icon: getAssetPath('icon.png'),
     webPreferences: {
+      contextIsolation: true,
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),

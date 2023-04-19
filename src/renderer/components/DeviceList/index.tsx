@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { ConnectableDevice } from '../../../connectable-device';
+import { ConnectableDevice } from '@shared/connectable-device';
 
 import NoDevicesView from '../DevicePanel/NoDevicesView';
 import DeviceListItem from './DeviceListItem';

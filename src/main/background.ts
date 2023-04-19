@@ -2,12 +2,12 @@ import { ipcMain, Event } from 'electron';
 import os from 'os';
 
 import { DRIVERS } from '@shared/drivers';
+import { ConnectableDevice } from '@shared/connectable-device';
+import { AdapterDevice } from '@shared/adapter-device';
 
 import { VirtualPortServiceWrapper as VirtualPortService } from './virtual-port-service-wrapper';
 import { windowService } from './window-service';
 
-import { ConnectableDevice } from '../connectable-device';
-import { AdapterDevice } from '../adapter-device';
 import { REMOVE, OS, POWERON, POWEROFF } from '../ipc-channels';
 
 export class Background {

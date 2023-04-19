@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import Off from '@assets/power_off.svg';
 import On from '@assets/power_on.svg';
 
-import { ConnectableDevice } from '../../../connectable-device';
+import { ConnectableDevice } from '@shared/connectable-device';
 
 const { deviceService } = window;
 

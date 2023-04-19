@@ -1,18 +1,18 @@
-import { DeviceDriver } from '@shared/driver-types';
+import { ConnectableDevice } from '@shared/connectable-device';
 
 import DeviceLayout from '../DeviceLayout';
 
 type PropTypes = {
-  driver: DeviceDriver;
+  device: ConnectableDevice;
 };
 
 export default function DeviceLayoutWrapper(
   props: PropTypes
 ): React.ReactElement {
-  const { driver } = props;
+  const { device } = props;
   return (
     <>
-      <DeviceLayout driver={driver} />
+      <DeviceLayout device={device} />
       <div className="warning-container" />
     </>
   );

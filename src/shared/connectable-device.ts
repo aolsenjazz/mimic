@@ -1,5 +1,11 @@
 import { DeviceDriver } from '@shared/driver-types';
+import * as Revivable from '@shared/revivable';
 
+import { InputGridImpl } from './input-grid-impl';
+
+console.log('ayoooo');
+
+@Revivable.register
 export class ConnectableDevice implements DeviceDriver {
   connected = true;
 
@@ -9,10 +15,26 @@ export class ConnectableDevice implements DeviceDriver {
 
   id: string;
 
-  constructor(driver: DeviceDriver, siblingIndex: number) {
+  inputGridImpls: InputGridImpl[];
+
+  constructor(
+    driver: DeviceDriver,
+    siblingIndex: number,
+    grids?: InputGridImpl[]
+  ) {
     this.driver = driver;
     this.siblingIndex = siblingIndex;
     this.id = `${driver.name} ${siblingIndex}`;
+
+    this.inputGridImpls =
+      grids || this.inputGrids.map((ig) => new InputGridImpl(ig));
+  }
+
+  toJSON() {
+    return {
+      name: this.constructor.name,
+      args: [this.driver, this.siblingIndex, this.inputGridImpls],
+    };
   }
 
   get name() {

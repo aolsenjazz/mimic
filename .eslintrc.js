@@ -12,6 +12,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
     'no-unused-vars': 'off',
+    'class-methods-use-this': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,
@@ -23,6 +24,7 @@ module.exports = {
   globals: {
     JSX: 'readonly',
     React: 'readonly',
+    MidiTuple: 'readonly',
   },
   settings: {
     'import/resolver': {

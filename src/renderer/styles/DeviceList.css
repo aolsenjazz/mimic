@@ -9,6 +9,14 @@
   max-height: calc(100vh - 30px);
 }
 
+#device-list #no-devices {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
 .device-list-item {
   width: 220px;
   position: relative;

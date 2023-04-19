@@ -12,20 +12,11 @@ type PropTypes = {
   bottom: number;
   deviceWidth: number;
   deviceHeight: number;
-  enabled: boolean;
 };
 
 export default function Keyboard(props: PropTypes) {
-  const {
-    nOctaves,
-    width,
-    height,
-    left,
-    bottom,
-    deviceWidth,
-    deviceHeight,
-    enabled,
-  } = props;
+  const { nOctaves, width, height, left, bottom, deviceWidth, deviceHeight } =
+    props;
 
   const style = {
     width: `${(width / deviceWidth) * 100}%`,
@@ -35,10 +26,7 @@ export default function Keyboard(props: PropTypes) {
   };
 
   return (
-    <div
-      style={style}
-      className={`keyboard-container input-grid ${enabled ? '' : 'disabled'}`}
-    >
+    <div style={style} className="keyboard-container input-grid">
       {[...Array(nOctaves)].map((_x, octave) => (
         <div
           key={octave}

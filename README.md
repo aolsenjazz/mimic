@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"/>
 </div>-->
 
-- 🖥️ **Support** Mac OSX 10.11 Intel + Silicon
+- 🖥️ **Support** Mac OSX 10.11+ Intel/Silicon
 - 🎹 **Popular Devices** 20+ devices from multiple manufacturers
 - ⏩ **Low Latency**: < 1 ms latency
 
