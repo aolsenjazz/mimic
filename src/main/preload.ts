@@ -1,6 +1,8 @@
 import { IpcRendererEvent, ipcRenderer, contextBridge } from 'electron';
 
-import { DEVICES, OS, REMOVE, POWERON, POWEROFF } from '../ipc-channels';
+import { MidiArray } from '@shared/midi-array';
+
+import { DEVICES, OS, REMOVE, POWERON, POWEROFF, MSG } from '../ipc-channels';
 
 /**
  * Generic wrapper around ipcRenderer.on() and ipcRenderer.removeListener()
@@ -40,6 +42,10 @@ const deviceService = {
 
   powerOff: (deviceId: string) => {
     ipcRenderer.send(POWEROFF, deviceId);
+  },
+
+  sendMsg(deviceId: string, msg: MidiArray) {
+    ipcRenderer.send(MSG, deviceId, msg);
   },
 };
 

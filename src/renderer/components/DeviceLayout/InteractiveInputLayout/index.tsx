@@ -1,51 +1,36 @@
 import {
-  InteractiveInputDriver,
-  InputDriverWithHandle,
-  SwitchDriver,
-} from '@shared/driver-types';
-import { KnobDriver } from '@shared/driver-types/input-drivers';
+  PadImpl,
+  KnobInputImpl,
+  SwitchImpl,
+  HandleInputImpl,
+  InteractiveInputImpl,
+} from '@shared/input-impl';
 
 import Pad from './PadLayout';
 import { Knob } from './KnobLayout';
-import { WheelLayout } from './WheelLayout';
+import { HandleLayout } from './HandleLayout';
 import { SwitchLayout } from './SwitchLayout';
 
 type InputLayoutPropTypes = {
-  driver: InteractiveInputDriver;
+  deviceId: string;
+  input: InteractiveInputImpl;
 };
 
 export default function InteractiveInputLayout(props: InputLayoutPropTypes) {
-  const { driver } = props;
+  const { deviceId, input } = props;
 
-  if (driver.type === 'pad') {
-    return <Pad shape={driver.shape} />;
+  if (input instanceof PadImpl) {
+    return <Pad deviceId={deviceId} pad={input} />;
   }
 
-  if (driver.type === 'knob') {
-    const asKnob = driver as KnobDriver;
-    return (
-      <Knob
-        value={0}
-        shape={driver.shape}
-        endless={asKnob.knobType === 'endless'}
-      />
-    );
+  if (input instanceof KnobInputImpl) {
+    return <Knob deviceId={deviceId} input={input} />;
   }
 
-  if (driver.type === 'switch') {
-    const asSwitch = driver as SwitchDriver;
-    const { steps } = asSwitch;
-
-    return <SwitchLayout steps={steps} style={driver.style} />;
+  if (input instanceof SwitchImpl) {
+    return <SwitchLayout deviceId={deviceId} input={input} />;
   }
 
-  const handleWidth = (driver as InputDriverWithHandle).handleWidth as number;
-  return (
-    <WheelLayout
-      value={0}
-      handleWidth={`${(handleWidth / driver.width) * 100}%`}
-      handleHeight={`${(handleWidth / driver.height) * 100}%`}
-      style={driver.style}
-    />
-  );
+  const handleImpl = input as HandleInputImpl;
+  return <HandleLayout deviceId={deviceId} input={handleImpl} />;
 }

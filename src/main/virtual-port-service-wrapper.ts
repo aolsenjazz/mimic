@@ -2,8 +2,9 @@
 import { VirtualInput } from '@sc/main/port-service/virtual-input';
 import { VirtualOutput } from '@sc/main/port-service/virtual-output';
 import { VirtualPortService } from '@sc/main/port-service/virtual-port-service';
-import { DeviceDriver } from '@shared/driver-types';
 import { PortPair } from '@sc/main/port-service/port-pair';
+import { DeviceDriver } from '@shared/driver-types';
+import { MidiArray } from '@shared/midi-array';
 
 import { windowService } from './window-service';
 
@@ -45,6 +46,10 @@ export class VirtualPortServiceWrapper {
 
   constructor() {
     this.portService = new VirtualPortServiceShim();
+  }
+
+  send(deviceId: string, msg: MidiArray) {
+    this.portService.send(msg, deviceId);
   }
 
   addDevice(driver: DeviceDriver) {

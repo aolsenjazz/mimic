@@ -1,8 +1,8 @@
 import { InputGridDriver } from '@shared/driver-types';
 import { BaseInputImpl, create } from '@shared/input-impl';
-import * as Revivable from '@shared/revivable';
+import { register } from '@shared/revivable';
 
-@Revivable.register
+@register
 export class InputGridImpl implements InputGridDriver {
   driver: InputGridDriver;
 

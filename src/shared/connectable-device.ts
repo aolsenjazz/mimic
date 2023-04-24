@@ -1,11 +1,9 @@
 import { DeviceDriver } from '@shared/driver-types';
-import * as Revivable from '@shared/revivable';
+import { register } from '@shared/revivable';
 
 import { InputGridImpl } from './input-grid-impl';
 
-console.log('ayoooo');
-
-@Revivable.register
+@register
 export class ConnectableDevice implements DeviceDriver {
   connected = true;
 

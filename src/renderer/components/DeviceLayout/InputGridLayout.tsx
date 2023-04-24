@@ -1,23 +1,21 @@
-import {
-  InputGridDriver,
-  InputDriver,
-  InteractiveInputDriver,
-} from '@shared/driver-types';
+import { InputGridImpl } from '@shared/input-grid-impl';
+import { BaseInputImpl, InteractiveInputImpl } from '@shared/input-impl';
 
 import InteractiveInputLayout from './InteractiveInputLayout';
 import NoninteractiveInputLayout from './NoninteractiveInputLayout';
 
 type InputLayoutPropTypes = {
-  driver: InputDriver;
+  deviceId: string;
+  input: BaseInputImpl;
   width: string;
   height: string;
 };
 
 function InputLayout(props: InputLayoutPropTypes) {
-  const { driver, width, height } = props;
+  const { deviceId, input, width, height } = props;
 
   let Element;
-  if (driver.interactive) {
+  if (input instanceof InteractiveInputImpl) {
     Element = (
       <div
         className="input-wrapper"
@@ -27,7 +25,7 @@ function InputLayout(props: InputLayoutPropTypes) {
           height,
         }}
       >
-        <InteractiveInputLayout driver={driver as InteractiveInputDriver} />
+        <InteractiveInputLayout deviceId={deviceId} input={input} />
       </div>
     );
   } else {
@@ -39,7 +37,7 @@ function InputLayout(props: InputLayoutPropTypes) {
           height,
         }}
       >
-        <NoninteractiveInputLayout shape={driver.shape} />
+        <NoninteractiveInputLayout shape={input.shape} />
       </div>
     );
   }
@@ -48,41 +46,39 @@ function InputLayout(props: InputLayoutPropTypes) {
 }
 
 type PropTypes = {
-  inputGrid: InputGridDriver;
+  deviceId: string;
+  grid: InputGridImpl;
   deviceWidth: number;
   deviceHeight: number;
 };
 
 export default function InputGridLayout(props: PropTypes) {
-  const { inputGrid, deviceHeight, deviceWidth } = props;
+  const { deviceId, grid, deviceHeight, deviceWidth } = props;
 
   const style = {
-    width: `${(inputGrid.width / deviceWidth) * 100}%`,
-    height: `${(inputGrid.height / deviceHeight) * 100}%`,
-    left: `${(inputGrid.left / deviceWidth) * 100}%`,
-    bottom: `${(inputGrid.bottom / deviceHeight) * 100}%`,
+    width: `${(grid.width / deviceWidth) * 100}%`,
+    height: `${(grid.height / deviceHeight) * 100}%`,
+    left: `${(grid.left / deviceWidth) * 100}%`,
+    bottom: `${(grid.bottom / deviceHeight) * 100}%`,
   };
 
   return (
     <div className="input-grid" style={style}>
-      {inputGrid.inputs.map((driver, i) => (
+      {grid.inputImpls.map((input, i) => (
         <div
           className="input-container"
           // eslint-disable-next-line react/no-array-index-key
           key={`InputGrid[${i}]`}
           style={{
-            width: `calc(100% / ${inputGrid.nCols})`,
-            height: `calc(100% / ${inputGrid.nRows})`,
+            width: `calc(100% / ${grid.nCols})`,
+            height: `calc(100% / ${grid.nRows})`,
           }}
         >
           <InputLayout
-            driver={driver}
-            width={`${
-              (driver.width / (inputGrid.width / inputGrid.nCols)) * 100
-            }%`}
-            height={`${
-              (driver.height / (inputGrid.height / inputGrid.nRows)) * 100
-            }%`}
+            deviceId={deviceId}
+            input={input}
+            width={`${(input.width / (grid.width / grid.nCols)) * 100}%`}
+            height={`${(input.height / (grid.height / grid.nRows)) * 100}%`}
           />
         </div>
       ))}

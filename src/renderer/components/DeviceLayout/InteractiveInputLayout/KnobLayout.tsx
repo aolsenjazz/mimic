@@ -1,3 +1,5 @@
+import { KnobInputImpl } from '@shared/input-impl';
+
 /**
  * Converts a value in given range to the equivalent value in a new range
  *
@@ -18,14 +20,13 @@ const convertRange = (
 };
 
 type PropTypes = {
-  value: number;
-  shape: string;
-  endless: boolean;
+  input: KnobInputImpl;
 };
 
 export function Knob(props: PropTypes) {
-  const { value, shape, endless } = props;
+  const { input } = props;
 
+  const value = 0;
   const degrees = 270;
   const min = 0;
   const max = 127;
@@ -41,11 +42,11 @@ export function Knob(props: PropTypes) {
       <div
         className="outer interactive-indicator"
         style={{
-          borderRadius: shape === 'circle' || !shape ? '100%' : '',
+          borderRadius: input.shape === 'circle' ? '100%' : '',
         }}
       >
         <div className="inner" style={{ transform: `rotate(${curDeg}deg)` }}>
-          {endless ? null : <div className="grip" />}
+          {input.knobType === 'endless' ? null : <div className="grip" />}
         </div>
       </div>
     </div>

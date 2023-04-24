@@ -25,7 +25,7 @@ export default function DeviceLayout(props: PropTypes) {
         />
       ) : null}
 
-      {device.inputGrids.map((inputGrid) => {
+      {device.inputGridImpls.map((inputGrid) => {
         const xyChildren = inputGrid.inputs.filter((i) => i.type === 'xy');
         const isMultiInput = xyChildren.length === 2;
 
@@ -39,7 +39,8 @@ export default function DeviceLayout(props: PropTypes) {
         ) : (
           <InputGridLayout
             key={inputGrid.id}
-            inputGrid={inputGrid}
+            deviceId={device.id}
+            grid={inputGrid}
             deviceWidth={device.width}
             deviceHeight={device.height}
           />

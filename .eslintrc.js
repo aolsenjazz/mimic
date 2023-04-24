@@ -23,8 +23,6 @@ module.exports = {
   },
   globals: {
     JSX: 'readonly',
-    React: 'readonly',
-    MidiTuple: 'readonly',
   },
   settings: {
     'import/resolver': {

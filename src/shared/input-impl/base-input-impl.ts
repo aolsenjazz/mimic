@@ -3,7 +3,7 @@ import { register } from '@shared/revivable';
 
 @register
 export class BaseInputImpl<T extends InputDriver = InputDriver>
-  implements InputDriver 
+  implements InputDriver
 {
   driver: T;
 

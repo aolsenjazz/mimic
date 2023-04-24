@@ -4,11 +4,12 @@ import os from 'os';
 import { DRIVERS } from '@shared/drivers';
 import { ConnectableDevice } from '@shared/connectable-device';
 import { AdapterDevice } from '@shared/adapter-device';
+import { MidiArray, create } from '@shared/midi-array';
 
 import { VirtualPortServiceWrapper as VirtualPortService } from './virtual-port-service-wrapper';
 import { windowService } from './window-service';
 
-import { REMOVE, OS, POWERON, POWEROFF } from '../ipc-channels';
+import { REMOVE, OS, POWERON, POWEROFF, MSG } from '../ipc-channels';
 
 export class Background {
   portService: VirtualPortService;
@@ -44,6 +45,13 @@ export class Background {
     ipcMain.on(POWEROFF, (_e: Event, id: string) => {
       this.portService.removeDevice(id);
     });
+
+    ipcMain.on(
+      MSG,
+      (_e: Event, deviceId: string, msg: NumberArrayWithStatus) => {
+        this.portService.send(deviceId, create(msg));
+      }
+    );
   }
 
   addDevice(dName: string) {

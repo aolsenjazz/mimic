@@ -1,10 +1,12 @@
+import { SwitchImpl } from '@shared/input-impl';
+
 type PropTypes = {
-  steps: number[][];
-  style: { transform?: string } | undefined;
+  input: SwitchImpl;
 };
 
 export function SwitchLayout(props: PropTypes) {
-  const { steps, style } = props;
+  const { input } = props;
+  const { steps, style } = input;
 
   const nSteps = steps.length;
   const stepIdx = 0;

@@ -1,8 +1,8 @@
 import { SwitchDriver } from '@shared/driver-types';
-import * as Revivable from '@shared/revivable';
+import { register } from '@shared/revivable';
 import { InteractiveInputImpl } from './interactive-input-impl';
 
-@Revivable.register
+@register
 export class SwitchImpl
   extends InteractiveInputImpl<SwitchDriver>
   implements SwitchDriver

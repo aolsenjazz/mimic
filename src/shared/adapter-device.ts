@@ -1,8 +1,8 @@
 import { DeviceDriver } from '@shared/driver-types';
-import * as Revivable from '@shared/revivable';
+import { register } from '@shared/revivable';
 import { ConnectableDevice } from './connectable-device';
 
-@Revivable.register
+@register
 export class AdapterDevice extends ConnectableDevice {
   child?: DeviceDriver;
 
