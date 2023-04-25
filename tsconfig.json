@@ -21,7 +21,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "outDir": ".erb/dll",
-    "typeRoots": ["./packages/super-controller/src/types"],
     "paths": {
       "@shared/*": ["packages/super-controller/src/shared/*", "src/shared/*"],
       "@sc/*": ["packages/super-controller/src/*"],
