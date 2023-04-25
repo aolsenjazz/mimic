@@ -53,6 +53,7 @@ export class PadImpl
     let { value, status } = this;
     if (this.requiresToggle) {
       value = this.toggleValue;
+
       this.toggleValue = this.toggleValue === 127 ? 0 : 127;
 
       if (status === 'noteon/noteoff') {

@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { PadImpl } from '@shared/input-impl';
+import { MidiArray } from '@shared/midi-array';
 
 const { deviceService } = window;
 
@@ -12,36 +13,32 @@ type PropTypes = {
 export default function Pad(props: PropTypes) {
   const { deviceId, pad } = props;
 
-  const [mouseDown, setMouseDown] = useState(false);
+  // on mousedown, tell PadImpl that it was pressed. then, set a listener attached
+  // to window so that when mouse is release, the PadImpl is "released"
+  const cb = useCallback(
+    (e) => {
+      e.preventDefault(); // prevent drag event from firing
+      pad.press();
 
-  // on mousedown, send the appropriate event
-  const cb = useCallback(() => {
-    setMouseDown(true);
-    const mm = pad.midiArray('noteon');
-    deviceService.sendMsg(deviceId, mm);
-  }, [pad, deviceId]);
-
-  // on mouseup, send the appropriate event if mousedown occurred on this element
-  useEffect(() => {
-    if (mouseDown === true) {
       const onMouseUp = () => {
-        setMouseDown(false);
-        const mm = pad.midiArray('noteoff');
-        deviceService.sendMsg(deviceId, mm);
+        pad.release();
+        window.removeEventListener('mouseup', onMouseUp);
       };
 
       window.addEventListener('mouseup', onMouseUp);
-      return () => window.removeEventListener('mouseup', onMouseUp);
-    }
+    },
+    [pad]
+  );
 
-    return () => {};
-  }, [mouseDown, pad, deviceId]);
+  useEffect(() => {
+    pad.onTransmit((msg: MidiArray) => deviceService.sendMsg(deviceId, msg));
+  }, [pad, deviceId]);
 
   return (
     <div
       className="pad interactive-indicator"
       role="presentation"
-      onMouseDown={() => cb()}
+      onMouseDown={cb}
       style={{
         borderRadius: pad.shape === 'circle' ? '100%' : 0,
       }}
