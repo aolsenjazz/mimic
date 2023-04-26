@@ -12,6 +12,9 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
     'class-methods-use-this': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'no-undef': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,
@@ -23,6 +26,7 @@ module.exports = {
   globals: {
     JSX: 'readonly',
   },
+  plugins: ['@typescript-eslint'],
   settings: {
     'import/resolver': {
       // See https://github.com/benmosher/eslint-plugin-import/issues/1396#issuecomment-575727774 for line below

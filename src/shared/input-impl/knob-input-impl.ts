@@ -1,4 +1,6 @@
 import { KnobDriver } from '@shared/driver-types/input-drivers';
+import { create } from '@shared/midi-array';
+
 import { InteractiveInputImpl } from './interactive-input-impl';
 
 export class KnobInputImpl
@@ -15,5 +17,10 @@ export class KnobInputImpl
 
   get knobType() {
     return this.driver.knobType;
+  }
+
+  midiArray(value: MidiNumber) {
+    if (this.status === 'noteon/noteoff') throw new Error(); // satisfy compiler
+    return create(this.status, this.channel, this.number, value);
   }
 }

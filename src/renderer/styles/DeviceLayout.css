@@ -126,6 +126,40 @@
   background: #3a84e9;
 }
 
+.device-layout.connected .knob .inner .multi-grip {
+  height: 60%;
+  width: 60%;
+  position: relative;
+  border: dashed 2px #3a84e9;
+  border-radius: 100%;
+  margin-left: calc(20% - 2px);
+  margin-top: calc(20% - 2px);
+}
+
+.device-layout.connected .knob .inner .multi-grip div {
+  background: #3a84e9;
+  width: 1px;
+  height: 25%;
+  position: absolute;
+}
+
+.device-layout.connected .knob .inner .multi-grip div:nth-of-type(1) {
+  left: calc(50% - 0.5px);
+  bottom: 20%;
+}
+
+.device-layout.connected .knob .inner .multi-grip div:nth-of-type(2) {
+  left: calc(35% - 1px);
+  top: 30%;
+  rotate: 120deg;
+}
+
+.device-layout.connected .knob .inner .multi-grip div:nth-of-type(3) {
+  right: calc(35% - 1px);
+  top: 30%;
+  rotate: -120deg;
+}
+
 .device-layout .octave {
   height: 100%;
   display: inline-block;

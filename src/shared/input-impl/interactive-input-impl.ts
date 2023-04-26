@@ -1,6 +1,5 @@
 import { InteractiveInputDriver } from '@shared/driver-types';
 import { register } from '@shared/revivable';
-import { create } from '@shared/midi-array';
 import { BaseInputImpl } from './base-input-impl';
 
 @register
@@ -43,14 +42,5 @@ export class InteractiveInputImpl<
 
   get availableFx() {
     return this.driver.availableFx;
-  }
-
-  midiArray(noteStatus?: 'noteon' | 'noteoff') {
-    const status = this.status === 'noteon/noteoff' ? noteStatus : this.status;
-
-    if (status === undefined)
-      throw new Error('must provide noteStatus when type === noteon/noteoff');
-
-    return create(status, this.channel, this.number);
   }
 }

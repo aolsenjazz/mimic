@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, MouseEvent } from 'react';
 
 import { PadImpl } from '@shared/input-impl';
 import { MidiArray } from '@shared/midi-array';
@@ -16,7 +16,7 @@ export default function Pad(props: PropTypes) {
   // on mousedown, tell PadImpl that it was pressed. then, set a listener attached
   // to window so that when mouse is release, the PadImpl is "released"
   const cb = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
       e.preventDefault(); // prevent drag event from firing
       pad.press();
 

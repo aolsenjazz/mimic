@@ -7,7 +7,8 @@ import {
 } from '@shared/input-impl';
 
 import Pad from './PadLayout';
-import { Knob } from './KnobLayout';
+import { AbsoluteKnob } from './AbsoluteKnobLayout';
+import { EndlessKnob } from './EndlessKnobLayout';
 import { HandleLayout } from './HandleLayout';
 import { SwitchLayout } from './SwitchLayout';
 
@@ -24,7 +25,11 @@ export default function InteractiveInputLayout(props: InputLayoutPropTypes) {
   }
 
   if (input instanceof KnobInputImpl) {
-    return <Knob deviceId={deviceId} input={input} />;
+    return input.knobType === 'endless' ? (
+      <EndlessKnob deviceId={deviceId} input={input} />
+    ) : (
+      <AbsoluteKnob deviceId={deviceId} input={input} />
+    );
   }
 
   if (input instanceof SwitchImpl) {
