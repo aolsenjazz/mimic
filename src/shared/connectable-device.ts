@@ -1,5 +1,8 @@
 import { DeviceDriver } from '@shared/driver-types';
 import { register } from '@shared/revivable';
+import { MidiArray } from '@shared/midi-array';
+import { id } from '@shared/util';
+import { InteractiveInputImpl } from './input-impl';
 
 import { InputGridImpl } from './input-grid-impl';
 
@@ -33,6 +36,16 @@ export class ConnectableDevice implements DeviceDriver {
       name: this.constructor.name,
       args: [this.driver, this.siblingIndex, this.inputGridImpls],
     };
+  }
+
+  handleMessage(msg: MidiArray) {
+    this.inputGridImpls
+      .flatMap((ig) => ig.inputImpls)
+      .filter((i) => i instanceof InteractiveInputImpl)
+      .filter((i) => id(i as InteractiveInputImpl) === msg.id(true))
+      .forEach((i) => {
+        (i as InteractiveInputImpl).handleMessage(msg);
+      });
   }
 
   get name() {

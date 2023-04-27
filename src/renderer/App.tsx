@@ -7,6 +7,7 @@ import { parse } from '@shared/util';
 import TitleBar from './components/TitleBar';
 import DeviceList from './components/DeviceList';
 import DevicePanel from './components/DevicePanel';
+import MessageListener from './MessageListener';
 
 import './styles/App.global.css';
 
@@ -51,6 +52,7 @@ export default function App() {
           setDevices={setDevices}
         />
         <DevicePanel device={activeDev} />
+        <MessageListener devices={devices} setDevices={setDevices} />
       </div>
     </>
   );

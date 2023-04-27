@@ -10,7 +10,6 @@ import { DEVICES, OS, REMOVE, POWERON, POWEROFF, MSG } from '../ipc-channels';
  * @param channel The channel data is being received on
  * @param func The callback function to be invoked once data is received
  */
-// eslint-disable-next-line no-unused-vars
 function addOnChangeListener(channel: string, func: (...args: any[]) => void) {
   const subscription = (_event: IpcRendererEvent, ...args: any[]) => {
     func(...args);
@@ -27,7 +26,6 @@ const deviceService = {
    *
    * @param func The callback to be invoked
    */
-  // eslint-disable-next-line no-unused-vars
   onChange: (func: (deviceJSON: string) => void) => {
     return addOnChangeListener(DEVICES, func);
   },
@@ -46,6 +44,10 @@ const deviceService = {
 
   sendMsg(deviceId: string, msg: MidiArray) {
     ipcRenderer.send(MSG, deviceId, msg);
+  },
+
+  onMsg(func: (deviceId: string, msg: NumberArrayWithStatus) => void) {
+    return addOnChangeListener(MSG, func);
   },
 };
 

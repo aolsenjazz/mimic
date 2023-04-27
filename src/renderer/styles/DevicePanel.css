@@ -4,9 +4,13 @@
   opacity: 0.95;
 }
 
-#device-panel .device-container .interactive-indicator {
+#device-panel
+  .device-container
+  .device-layout:not(.connected)
+  .interactive-indicator {
   border-color: #bcbec0;
   pointer-events: none;
+  background-color: transparent !important;
 }
 
 #device-panel
@@ -28,13 +32,29 @@
 #device-panel
   .device-container
   .device-layout.connected
-  .interactive-indicator:hover {
+  .key.interactive-indicator:hover {
   background-color: rgba(58, 132, 233, 0.05);
 }
 
 #device-panel
   .device-container
   .device-layout.connected
-  .interactive-indicator:active {
+  .key.interactive-indicator:active {
   background-color: rgba(58, 132, 233, 0.1);
+}
+
+#device-panel
+  .device-container
+  .device-layout.connected
+  .interactive-indicator:not(.key, .key *):hover {
+  border-style: dotted;
+  border-width: 1px;
+}
+
+#device-panel
+  .device-container
+  .device-layout.connected
+  .interactive-indicator:not(.key, .key *):active {
+  border-style: dashed;
+  border-width: 1px;
 }

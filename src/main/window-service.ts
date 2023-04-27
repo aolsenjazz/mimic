@@ -2,7 +2,7 @@ import { BrowserWindow } from 'electron';
 
 import { ConnectableDevice } from '@shared/connectable-device';
 import { stringify } from '@shared/util';
-import { DEVICES } from '../ipc-channels';
+import { DEVICES, MSG } from '../ipc-channels';
 
 class WindowService {
   sendDevices(devices: ConnectableDevice[]) {
@@ -10,7 +10,7 @@ class WindowService {
   }
 
   sendMsg(id: string, msg: MidiTuple) {
-    this.#send(id, msg);
+    this.#send(MSG, id, msg);
   }
 
   /**

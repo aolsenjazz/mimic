@@ -44,7 +44,9 @@ export default function KeyWhite(props: PropTypes) {
       role="presentation"
     >
       <div
-        className={`border-${cOrF.includes(fundamental) ? 'full' : 'partial'}`}
+        className={`border-${
+          cOrF.includes(fundamental) ? 'full' : 'partial'
+        } interactive-indicator`}
       />
     </div>
   );

@@ -41,6 +41,8 @@ export default function Pad(props: PropTypes) {
       onMouseDown={cb}
       style={{
         borderRadius: pad.shape === 'circle' ? '100%' : 0,
+        backgroundColor:
+          pad.color !== undefined ? pad.color.string : 'transparent',
       }}
     />
   );

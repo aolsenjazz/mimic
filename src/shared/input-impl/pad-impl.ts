@@ -1,5 +1,6 @@
 import { PadDriver } from '@shared/driver-types/input-drivers';
 import { create, MidiArray } from '@shared/midi-array';
+import { Color } from '@shared/driver-types';
 
 import { InteractiveInputImpl } from './interactive-input-impl';
 
@@ -9,18 +10,31 @@ export class PadImpl
 {
   value?: MidiNumber;
 
+  color?: Color;
+
   protected toggleValue: 0 | 127 = 127;
 
   protected cb?: (msg: MidiArray) => void;
 
-  constructor(driver: PadDriver) {
+  constructor(driver: PadDriver, value?: MidiNumber, color?: Color) {
     super(driver);
 
-    this.value = driver.value;
+    this.value = value || driver.value;
+    this.color = color || this.color;
   }
 
   get type() {
     return 'pad' as const;
+  }
+
+  handleMessage(msg: MidiArray) {
+    const colors = this.availableColors.filter(
+      (c) => JSON.stringify(c.array) === JSON.stringify(msg.array)
+    );
+
+    if (colors.length > 0) {
+      [this.color] = colors;
+    }
   }
 
   press() {
@@ -46,6 +60,13 @@ export class PadImpl
       throw new Error('must provide noteStatus when type === noteon/noteoff');
 
     return create(status, this.channel, this.number, this.value);
+  }
+
+  toJSON() {
+    return {
+      name: this.constructor.name,
+      args: [this.driver, this.value, this.color],
+    };
   }
 
   protected updateState() {

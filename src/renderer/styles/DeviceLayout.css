@@ -51,14 +51,6 @@
   text-align: center;
 }
 
-.device-layout .focus .pad,
-.device-layout .focus .switch,
-.device-layout .focus .wheel,
-.device-layout .focus .knob .outer {
-  border-style: dashed !important;
-  filter: sepia(0.2);
-}
-
 .device-layout .pad {
   position: absolute;
   border: 1px solid;
