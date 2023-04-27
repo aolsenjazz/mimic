@@ -1,4 +1,9 @@
-import { useState, useCallback, MouseEvent as ReactMouseEvent } from 'react';
+import {
+  useState,
+  useEffect,
+  useCallback,
+  MouseEvent as ReactMouseEvent,
+} from 'react';
 
 import { KnobInputImpl } from '@shared/input-impl';
 
@@ -50,7 +55,10 @@ let lastValue = -1;
 export function AbsoluteKnob(props: PropTypes) {
   const { input, deviceId } = props;
 
-  const value = 0;
+  if (input.number === 48) {
+    console.log(input.value);
+  }
+
   const degrees = 270;
   const min = 0;
   const max = 127;
@@ -58,10 +66,18 @@ export function AbsoluteKnob(props: PropTypes) {
   const lowerAngleBound = (360 - degrees) / 2;
   const upperAngleBound = lowerAngleBound + degrees;
 
-  const curDeg = Math.floor(
-    convertRange(min, max, lowerAngleBound, upperAngleBound, value)
-  );
-  const [currentDeg, setCurrentDeg] = useState(curDeg);
+  const [currentDeg, setCurrentDeg] = useState(max);
+
+  useEffect(() => {
+    const value = convertRange(
+      min,
+      max,
+      lowerAngleBound,
+      upperAngleBound,
+      input.value || 127
+    );
+    setCurrentDeg(value);
+  }, [input]);
 
   const startDrag = useCallback(
     (e: ReactMouseEvent) => {

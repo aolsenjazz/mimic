@@ -5,8 +5,16 @@ import { InteractiveInputImpl } from './interactive-input-impl';
 
 export class KnobInputImpl
   extends InteractiveInputImpl<KnobDriver>
-  implements KnobDriver 
+  implements KnobDriver
 {
+  value?: MidiNumber;
+
+  constructor(driver: KnobDriver) {
+    super(driver);
+
+    this.value = driver.knobType === 'absolute' ? 127 : undefined;
+  }
+
   get type() {
     return 'knob' as const;
   }
@@ -21,6 +29,7 @@ export class KnobInputImpl
 
   midiArray(value: MidiNumber) {
     if (this.status === 'noteon/noteoff') throw new Error(); // satisfy compiler
+    if (this.knobType === 'absolute') this.value = value;
     return create(this.status, this.channel, this.number, value);
   }
 }
