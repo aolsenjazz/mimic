@@ -1,5 +1,5 @@
 import { InputDriver } from '@shared/driver-types';
-import { register } from '@shared/revivable';
+import { register, Skeleton } from '@shared/revivable';
 
 @register
 export class BaseInputImpl<T extends InputDriver = InputDriver>
@@ -11,7 +11,7 @@ export class BaseInputImpl<T extends InputDriver = InputDriver>
     this.driver = driver;
   }
 
-  toJSON() {
+  toJSON(): Skeleton {
     return {
       name: this.constructor.name,
       args: [this.driver],

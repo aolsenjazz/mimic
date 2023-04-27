@@ -5,7 +5,7 @@ import { InteractiveInputImpl } from './interactive-input-impl';
 
 export class KnobInputImpl
   extends InteractiveInputImpl<KnobDriver>
-  implements KnobDriver
+  implements KnobDriver 
 {
   get type() {
     return 'knob' as const;

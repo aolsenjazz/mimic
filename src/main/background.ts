@@ -24,7 +24,7 @@ export class Background {
   initIpc() {
     ipcMain.on(REMOVE, (_e: Event, id: string) => {
       this.removeDevice(id);
-      windowService.sendDevices(Array.from(this.connectableDevices.values()));
+      this.reloadDevices();
     });
 
     // When the frontend as for OS details, send them
@@ -65,7 +65,7 @@ export class Background {
           : new ConnectableDevice(d, sibIdx);
 
       this.connectableDevices.set(cd.id!, cd);
-      windowService.sendDevices(Array.from(this.connectableDevices.values()));
+      this.reloadDevices();
 
       // this is weird, but by adding a delay to opening the virtual port, we ensure that 100%
       // computational resources go to reflecting the user action in the frontend, making it
@@ -81,5 +81,9 @@ export class Background {
   removeDevice(id: string) {
     this.portService.removeDevice(id);
     this.connectableDevices.delete(id);
+  }
+
+  reloadDevices() {
+    windowService.sendDevices(Array.from(this.connectableDevices.values()));
   }
 }

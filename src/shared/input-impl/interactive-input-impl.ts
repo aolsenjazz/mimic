@@ -1,5 +1,5 @@
 import { InteractiveInputDriver } from '@shared/driver-types';
-import { register } from '@shared/revivable';
+import { register, Skeleton } from '@shared/revivable';
 import { BaseInputImpl } from './base-input-impl';
 
 @register
@@ -9,7 +9,7 @@ export class InteractiveInputImpl<
   extends BaseInputImpl<T>
   implements InteractiveInputDriver
 {
-  toJSON() {
+  toJSON(): Skeleton {
     return {
       name: this.constructor.name,
       args: [this.driver],

@@ -95,7 +95,6 @@ const createWindow = async () => {
   });
 
   const background = new Background();
-
   const menuBuilder = new MenuBuilder(mainWindow, background);
   menuBuilder.buildMenu();
 
