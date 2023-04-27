@@ -29,4 +29,12 @@ export class HandleInputImpl
   get handleHeight() {
     return this.driver.handleHeight;
   }
+
+  get horizontal() {
+    return this.driver.horizontal;
+  }
+
+  get inverted() {
+    return this.driver.inverted;
+  }
 }

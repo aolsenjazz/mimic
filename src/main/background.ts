@@ -4,7 +4,7 @@ import os from 'os';
 import { DRIVERS } from '@shared/drivers';
 import { ConnectableDevice } from '@shared/connectable-device';
 import { AdapterDevice } from '@shared/adapter-device';
-import { MidiArray, create } from '@shared/midi-array';
+import { create } from '@shared/midi-array';
 
 import { VirtualPortServiceWrapper as VirtualPortService } from './virtual-port-service-wrapper';
 import { windowService } from './window-service';

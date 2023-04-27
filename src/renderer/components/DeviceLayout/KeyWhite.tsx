@@ -6,23 +6,16 @@ const { deviceService } = window;
 
 type PropTypes = {
   fundamental: number;
-  octave: number;
   channel: Channel;
+  octave: number;
   deviceId: string;
 };
 
-/**
- * Graphical representation of a black key
- *
- * @param fundamental Zero-based, semitone offset from C
- */
-export default function KeyBlack(props: PropTypes) {
-  const { fundamental, octave, channel, deviceId } = props;
-  const number = (octave * 12 + fundamental) as MidiNumber;
+const cOrF = [0, 5];
 
-  // calculate distance from the left edge of parent octave
-  const numKeysFromLeft = 0.5 + Math.floor(fundamental / 2);
-  const adjustment = fundamental * Math.floor(fundamental / 6) * 0.9;
+export default function KeyWhite(props: PropTypes) {
+  const { fundamental, channel, deviceId, octave } = props;
+  const number = (octave * 12 + fundamental) as MidiNumber;
 
   // on mousedown, send note on and set a listener for mouseup
   const cb = useCallback(
@@ -46,12 +39,13 @@ export default function KeyBlack(props: PropTypes) {
 
   return (
     <div
-      className="key-black key interactive-indicator"
+      className="key-white key interactive-indicator"
       onMouseDown={cb}
       role="presentation"
-      style={{
-        left: `${16.2 * numKeysFromLeft - adjustment}%`,
-      }}
-    />
+    >
+      <div
+        className={`border-${cOrF.includes(fundamental) ? 'full' : 'partial'}`}
+      />
+    </div>
   );
 }

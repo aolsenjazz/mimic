@@ -1,10 +1,12 @@
 .keyboard-container,
+.keyboard-container .key div,
 .keyboard-container .key,
 .keyboard-container .key:last-of-type {
   border-color: #bcbec0;
 }
 
 .device-layout.connected .keyboard-container,
+.keyboard-container .key div,
 .device-layout.connected .keyboard-container .key,
 .device-layout.connected .keyboard-container .key:last-of-type {
   border-color: #3a84e9;
@@ -20,9 +22,24 @@
 }
 
 .key {
-  border-left: 1px solid;
   display: inline-block;
   flex: 1;
+  position: relative;
+}
+
+.key div {
+  position: absolute;
+  border-left: 1px solid;
+  left: 0;
+}
+
+.key .border-full {
+  height: 100%;
+}
+
+.key .border-partial {
+  height: 40%;
+  bottom: 0;
 }
 
 .key-black {

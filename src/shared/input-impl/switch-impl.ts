@@ -12,7 +12,7 @@ export class SwitchImpl
   }
 
   get response() {
-    return 'constant' as const;
+    return 'enumerated' as const;
   }
 
   get steps() {
@@ -29,5 +29,13 @@ export class SwitchImpl
 
   get initialStep() {
     return this.driver.initialStep;
+  }
+
+  get horizontal() {
+    return this.driver.horizontal;
+  }
+
+  get inverted() {
+    return this.driver.inverted;
   }
 }

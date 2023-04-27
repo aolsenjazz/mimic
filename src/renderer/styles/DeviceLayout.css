@@ -132,8 +132,9 @@
   position: relative;
   border: dashed 2px #3a84e9;
   border-radius: 100%;
-  margin-left: calc(20% - 2px);
-  margin-top: calc(20% - 2px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .device-layout.connected .knob .inner .multi-grip div {

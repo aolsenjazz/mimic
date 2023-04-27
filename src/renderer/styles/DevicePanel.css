@@ -12,8 +12,29 @@
 #device-panel
   .device-container
   .device-layout.connected
+  .interactive-container {
+  border-color: #3a84e9;
+}
+
+#device-panel
+  .device-container
+  .device-layout.connected
   .interactive-indicator {
   border-color: #3a84e9;
   cursor: pointer;
   pointer-events: auto;
+}
+
+#device-panel
+  .device-container
+  .device-layout.connected
+  .interactive-indicator:hover {
+  background-color: rgba(58, 132, 233, 0.05);
+}
+
+#device-panel
+  .device-container
+  .device-layout.connected
+  .interactive-indicator:active {
+  background-color: rgba(58, 132, 233, 0.1);
 }
