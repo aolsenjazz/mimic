@@ -206,6 +206,8 @@
 
 .device-layout .wheel .bounding-box .inner {
   display: flex;
+  transition-duration: 50ms;
+  transition-property: transform;
 }
 
 .device-layout .xy {

@@ -143,7 +143,7 @@ export function HandleLayout(props: PropTypes) {
       // find the bounds of the grip and its bounding box
       const grip = (clickEvent.target as HTMLElement).getBoundingClientRect();
       const bounds = boundingBox.current.getBoundingClientRect();
-      let lastValue = -1;
+      let lastValue = input.value;
 
       // Save the starting delta, calculate how far grip is allowed to move in
       // both directions
@@ -165,16 +165,31 @@ export function HandleLayout(props: PropTypes) {
           const mm = input.midiArray(converted);
           deviceService.sendMsg(deviceId, mm);
         }
+      };
 
-        // TODO: send a message, invert the value if horizontal
+      const mouseUpHandler = () => {
+        if (pitchbend) {
+          setDelta(0); // reset UI back to center
+
+          let x = 0; // simulate the knob returning to center
+          const id = setInterval(() => {
+            const val =
+              lastValue - Math.floor(((lastValue - 64) * (x + 1)) / 5);
+            const mm = input.midiArray(val as MidiNumber);
+            deviceService.sendMsg(deviceId, mm);
+
+            if (++x === 5) window.clearInterval(id);
+          }, 10);
+        }
+
+        document.removeEventListener('mouseup', mouseUpHandler);
+        document.removeEventListener('mousemove', moveHandler);
       };
 
       document.addEventListener('mousemove', moveHandler);
-      document.addEventListener('mouseup', () => {
-        document.removeEventListener('mousemove', moveHandler);
-      });
+      document.addEventListener('mouseup', mouseUpHandler);
     },
-    [delta, horizontal, inverted, deviceId, input]
+    [delta, horizontal, inverted, deviceId, input, setDelta, pitchbend]
   );
 
   return (
