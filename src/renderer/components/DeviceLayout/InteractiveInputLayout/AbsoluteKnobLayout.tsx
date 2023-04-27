@@ -106,7 +106,7 @@ export function AbsoluteKnob(props: PropTypes) {
   return (
     <div className="knob" role="button">
       <div
-        className="outer interactive-indicator"
+        className="outer"
         onMouseDown={startDrag}
         role="presentation"
         style={{
@@ -114,7 +114,7 @@ export function AbsoluteKnob(props: PropTypes) {
         }}
       >
         <div
-          className="inner"
+          className="inner interactive-indicator"
           style={{ transform: `rotate(${currentDeg}deg)` }}
         >
           <div className="grip" />

@@ -21,6 +21,12 @@
   border-right: 1px solid #bcbec0;
 }
 
+.keyboard-container.disabled *,
+.keyboard-container.disabled {
+  pointer-events: none !important;
+  border-color: #bcbec0 !important;
+}
+
 .key {
   display: inline-block;
   flex: 1;

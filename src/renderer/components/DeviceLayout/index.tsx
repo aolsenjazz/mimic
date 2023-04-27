@@ -25,6 +25,7 @@ export default function DeviceLayout(props: PropTypes) {
           channel={device.keyboard.channel}
           defaultOctave={device.keyboard.defaultOctave}
           deviceId={device.id}
+          enabled={device.keyboard.enabled}
         />
       ) : null}
 

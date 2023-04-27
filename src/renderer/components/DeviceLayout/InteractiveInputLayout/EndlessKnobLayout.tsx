@@ -74,21 +74,15 @@ export function EndlessKnob(props: PropTypes) {
   );
 
   return (
-    <div className="knob" role="button">
-      <div
-        className="outer interactive-indicator"
-        onMouseDown={startDrag}
-        role="presentation"
-        style={{
-          borderRadius: input.shape === 'circle' ? '100%' : '',
-        }}
-      >
+    <div className="knob endless" role="button">
+      <div className="outer" onMouseDown={startDrag} role="presentation">
         <div
-          className="inner"
-          style={{ transform: `rotate(${currentDeg}deg)` }}
-        >
-          <div className="multi-grip" />
-        </div>
+          className="inner interactive-indicator"
+          style={{
+            transform: `rotate(${currentDeg}deg)`,
+            borderRadius: input.shape === 'circle' ? '100%' : '',
+          }}
+        />
       </div>
     </div>
   );

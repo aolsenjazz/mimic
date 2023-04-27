@@ -16,6 +16,7 @@ type PropTypes = {
   channel: Channel;
   deviceId: string;
   defaultOctave: number;
+  enabled: boolean;
 };
 
 export default function Keyboard(props: PropTypes) {
@@ -30,6 +31,7 @@ export default function Keyboard(props: PropTypes) {
     channel,
     deviceId,
     defaultOctave,
+    enabled,
   } = props;
 
   const style = {
@@ -40,7 +42,10 @@ export default function Keyboard(props: PropTypes) {
   };
 
   return (
-    <div style={style} className="keyboard-container input-grid">
+    <div
+      style={style}
+      className={`keyboard-container input-grid ${enabled ? '' : 'disabled'}`}
+    >
       {[...Array(nOctaves)].map((_x, octave) => (
         <div
           key={octave}
@@ -72,7 +77,13 @@ export default function Keyboard(props: PropTypes) {
           ))}
         </div>
       ))}
-      <KeyWhite fundamental={0} key={0} />
+      <KeyWhite
+        fundamental={0}
+        key={0}
+        octave={nOctaves + defaultOctave}
+        channel={channel}
+        deviceId={deviceId}
+      />
     </div>
   );
 }
