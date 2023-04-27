@@ -55,10 +55,6 @@ let lastValue = -1;
 export function AbsoluteKnob(props: PropTypes) {
   const { input, deviceId } = props;
 
-  if (input.number === 48) {
-    console.log(input.value);
-  }
-
   const degrees = 270;
   const min = 0;
   const max = 127;
@@ -77,7 +73,7 @@ export function AbsoluteKnob(props: PropTypes) {
       input.value || 127
     );
     setCurrentDeg(value);
-  }, [input]);
+  }, [input, setCurrentDeg, lowerAngleBound, upperAngleBound]);
 
   const startDrag = useCallback(
     (e: ReactMouseEvent) => {
