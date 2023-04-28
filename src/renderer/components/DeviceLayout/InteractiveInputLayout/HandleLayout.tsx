@@ -1,5 +1,6 @@
 import {
   useState,
+  useEffect,
   useCallback,
   useRef,
   MouseEvent as ReactMouseEvent,
@@ -25,55 +26,16 @@ const convertRange = (
 };
 
 /**
- * Returns the maximum delta allowable in the "decreasing" direction. Note that in this case,
- * "descreasing" refers to the user-perceived "decreasing": turning a fader down in the case of
- * a vertically-oriented fader, or left in the case of a horizontal fader.
- *
- * This also means that though this is returning the "low bound," this number will in many
- * circumstances be higher than the "high bound."
- */
-function lowBound(
-  horizontal: boolean,
-  inverted: boolean,
-  startingDelta: number,
-  gripRect: DOMRect,
-  boundingRect: DOMRect
-) {
-  if (horizontal) {
-    return inverted
-      ? boundingRect.right - gripRect.right + startingDelta // this should be n >= 0
-      : boundingRect.left - gripRect.left + startingDelta; // this should be n <= 0
-  }
-
-  return inverted
-    ? boundingRect.top - gripRect.top + startingDelta // this should be n <= 0
-    : boundingRect.bottom - gripRect.bottom + startingDelta; // this should be n >= 0
-}
-
-/**
- * Returns the maximum delta allowable in the "increasing" direction. Note that in this case,
- * "increasing" refers to the user-perceived "increasing": turning a fader up in the case of
- * a vertically-oriented fader, or left in the case of a horizontal fader.
+ * Returns the maximum delta allowable
  *
  * This also means that though this is returning the "high bound," this number will in many
  * circumstances be higher than the "low bound."
  */
-function highBound(
-  horizontal: boolean,
-  inverted: boolean,
-  startingDelta: number,
-  gripRect: DOMRect,
-  boundingRect: DOMRect
-) {
-  if (horizontal) {
-    return inverted
-      ? boundingRect.left - gripRect.left + startingDelta
-      : boundingRect.right - gripRect.right + startingDelta; // this should be n >= 0
-  }
+function highBound(horizontal: boolean, boundingRect: DOMRect) {
+  const boundingWidth = boundingRect.right - boundingRect.left;
+  const boundingHeight = boundingRect.bottom - boundingRect.top;
 
-  return inverted
-    ? boundingRect.bottom - gripRect.bottom + startingDelta
-    : boundingRect.top - gripRect.top + startingDelta;
+  return horizontal ? boundingWidth : boundingHeight;
 }
 
 /**
@@ -101,27 +63,6 @@ function boundDelta(delta: number, bound1: number, bound2: number) {
   return Math.max(Math.min(delta, hb), lb);
 }
 
-/**
- * Depending on characterics of the input, returns the CSS styles to correctly
- * set the starting position of the grip
- */
-function createInitialPosition(
-  horizontal: boolean,
-  inverted: boolean,
-  pitchbend: boolean
-) {
-  if (pitchbend) {
-    return {};
-  }
-
-  return {
-    top: inverted ? undefined : 0,
-    bottom: inverted ? 0 : undefined,
-    left: horizontal && inverted ? 0 : undefined,
-    right: horizontal && !inverted ? 0 : undefined,
-  };
-}
-
 type PropTypes = {
   input: HandleInputImpl;
   deviceId: string;
@@ -129,36 +70,48 @@ type PropTypes = {
 
 export function HandleLayout(props: PropTypes) {
   const { input, deviceId } = props;
-  const { handleWidth, horizontal, inverted, status } = input;
+  const { handleWidth, handleHeight, horizontal, status } = input;
   const pitchbend = status === 'pitchbend';
+  const inverted = true;
 
   const [delta, setDelta] = useState(0); // handles animation, for efficiency
   const boundingBox = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!boundingBox.current) return;
+
+    const boundRect = boundingBox.current.getBoundingClientRect();
+    const newMax = highBound(input.horizontal, boundRect);
+
+    let pos = convertRange(0, 127, 0, newMax, input.value);
+    pos = horizontal ? pos : ((newMax - pos) as MidiNumber); // invert if slider is vertical
+    pos = inverted ? ((newMax - pos) as MidiNumber) : pos; // invert if slider is inverted
+
+    setDelta(pos);
+  }, [input, horizontal, deviceId, inverted]);
 
   const startDrag = useCallback(
     (clickEvent: ReactMouseEvent) => {
       if (boundingBox.current === null) return; // this won't happen
       clickEvent.preventDefault(); // prevent ondrag from firing
 
-      // find the bounds of the grip and its bounding box
-      const grip = (clickEvent.target as HTMLElement).getBoundingClientRect();
       const bounds = boundingBox.current.getBoundingClientRect();
       let lastValue = input.value;
 
-      // Save the starting delta, calculate how far grip is allowed to move in
-      // both directions
       const startDelta = delta;
-      const lb = lowBound(horizontal, inverted, startDelta, grip, bounds);
-      const hb = highBound(horizontal, inverted, startDelta, grip, bounds);
+      const hb = highBound(horizontal, bounds);
 
       const moveHandler = (moveEvent: MouseEvent) => {
         // calculate how far the mouse has moved, bound to range, set
         let d = calcDelta(horizontal, startDelta, clickEvent, moveEvent);
-        d = boundDelta(d, lb, hb);
+        d = boundDelta(d, 0, hb);
+
         setDelta(d);
 
         // convert to midi value, send
-        const converted = convertRange(lb, hb, 0, 127, d);
+        let converted = convertRange(0, hb, 0, 127, d);
+        converted = horizontal ? converted : ((127 - converted) as MidiNumber); // invert for vertical sliders
+        converted = inverted ? ((127 - converted) as MidiNumber) : converted; // invert if control is inverted
         if (converted !== lastValue) {
           lastValue = converted;
 
@@ -167,6 +120,7 @@ export function HandleLayout(props: PropTypes) {
         }
       };
 
+      // on mouseup: remove listeners, simulate return to position 50% if pitchbend
       const mouseUpHandler = () => {
         if (pitchbend) {
           setDelta(0); // reset UI back to center
@@ -178,7 +132,9 @@ export function HandleLayout(props: PropTypes) {
             const mm = input.midiArray(val as MidiNumber);
             deviceService.sendMsg(deviceId, mm);
 
-            if (++x === 5) window.clearInterval(id);
+            if (++x === 5) {
+              window.clearInterval(id);
+            }
           }, 10);
         }
 
@@ -198,8 +154,16 @@ export function HandleLayout(props: PropTypes) {
         className="bounding-box"
         ref={boundingBox}
         style={{
+          left: horizontal ? undefined : '0px',
+          top: horizontal ? '0px' : undefined,
           alignItems: pitchbend ? 'center' : undefined,
-          justifyContent: pitchbend ? 'center' : undefined,
+          justifyContent: 'top',
+          width: horizontal
+            ? `calc(100% - ${(handleWidth / input.width) * 100}%)`
+            : 'calc(100% - 2px)',
+          height: horizontal
+            ? 'calc(100% - 2px)'
+            : `calc(100% - ${(handleHeight / input.height) * 100}%)`,
         }}
       >
         <div
@@ -207,12 +171,15 @@ export function HandleLayout(props: PropTypes) {
           onMouseDown={startDrag}
           role="presentation"
           style={{
-            ...createInitialPosition(horizontal, inverted, pitchbend),
-            transform: `translate(${horizontal ? delta : 0}px, ${
-              horizontal ? 0 : delta
-            }px)`,
-            width: `calc(${(handleWidth / input.width) * 100}% - 2px)`,
-            height: `calc(${(handleWidth / input.height) * 100}% - 2px)`,
+            height: horizontal
+              ? `100%`
+              : `${(handleHeight / input.height) * 100}%`,
+            width: horizontal
+              ? `${(handleWidth / input.width) * 100}%`
+              : '100%',
+            marginLeft: horizontal ? delta : undefined,
+            marginTop: horizontal ? undefined : delta,
+            transform: horizontal ? `translateX(-50%)` : 'translateY(-50%)',
           }}
         />
       </div>

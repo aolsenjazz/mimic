@@ -37,6 +37,16 @@ export class PadImpl
     }
   }
 
+  applySentMessage(msg: MidiArray) {
+    const colors = this.availableColors.filter(
+      (c) => JSON.stringify(c.array) === JSON.stringify(msg.array)
+    );
+    // TODO: is this....right? couldnt be
+    if (colors.length > 0) {
+      [this.color] = colors;
+    }
+  }
+
   press() {
     if (this.cb) {
       this.cb(this.updateState());

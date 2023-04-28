@@ -21,6 +21,9 @@ export class InteractiveInputImpl<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleMessage(_msg: MidiArray) {}
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  applySentMessage(_msg: MidiArray) {}
+
   get interactive() {
     return true as const;
   }

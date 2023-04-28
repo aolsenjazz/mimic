@@ -1,6 +1,10 @@
 import path from 'path';
 import { app, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
+import {
+  installExtension,
+  REACT_DEVELOPER_TOOLS,
+} from 'electron-extension-installer';
 import log from 'electron-log';
 import os from 'os';
 
@@ -33,14 +37,10 @@ if (isDebug) {
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS'];
 
   return (
     installer
-      .default(
-        extensions.map((name) => installer[name]),
-        forceDownload
-      )
+      .default([], forceDownload)
       // eslint-disable-next-line no-console
       .catch(console.log)
   );
@@ -101,6 +101,16 @@ const createWindow = async () => {
   // eslint-disable-next-line no-new
   new AppUpdater();
 };
+
+// this isn't how extensions should really be loaded
+// see https://github.com/electron/electron/issues/37876 for more
+app.on('ready', async () => {
+  await installExtension(REACT_DEVELOPER_TOOLS, {
+    loadExtensionOptions: {
+      allowFileAccess: true,
+    },
+  });
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

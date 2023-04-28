@@ -26,20 +26,31 @@ export default function App() {
   // when background intialized devices changes, update here
   useEffect(() => {
     const cb = (jsonString: string) => {
-      const devs = parse<ConnectableDevice[]>(jsonString);
+      const skeletons = parse<ConnectableDevice[]>(jsonString);
+      const devs: ConnectableDevice[] = []; // new list
+      const newDevList = skeletons.map((d) => {
+        return d.type === 'adapter'
+          ? new AdapterDevice(d.driver, d.siblingIndex)
+          : new ConnectableDevice(d.driver, d.siblingIndex);
+      });
+      const currentDevListIds = devices.map((d) => d.id);
 
-      setDevices(
-        devs.map((d) => {
-          return d.type === 'adapter'
-            ? new AdapterDevice(d.driver, d.siblingIndex)
-            : new ConnectableDevice(d.driver, d.siblingIndex);
-        })
-      );
+      // add existing and/or new devices
+      newDevList.forEach((d) => {
+        if (currentDevListIds.includes(d.id)) {
+          const preexistingDev = devices.filter((pre) => pre.id === d.id)[0];
+          devs.push(preexistingDev);
+        } else {
+          devs.push(d);
+        }
+      });
+
+      setDevices(devs);
     };
 
     const unsubscribe = deviceService.onChange(cb);
     return () => unsubscribe();
-  }, []);
+  }, [devices]);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { KnobDriver } from '@shared/driver-types/input-drivers';
-import { create } from '@shared/midi-array';
+import { create, MidiArray, ThreeByteMidiArray } from '@shared/midi-array';
 
 import { InteractiveInputImpl } from './interactive-input-impl';
 
@@ -31,5 +31,9 @@ export class KnobInputImpl
     if (this.status === 'noteon/noteoff') throw new Error(); // satisfy compiler
     if (this.knobType === 'absolute') this.value = value;
     return create(this.status, this.channel, this.number, value);
+  }
+
+  applySentMessage(msg: MidiArray) {
+    this.value = (msg as ThreeByteMidiArray).value;
   }
 }
