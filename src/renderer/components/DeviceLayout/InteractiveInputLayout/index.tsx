@@ -9,7 +9,7 @@ import {
 import Pad from './PadLayout';
 import KnobLayout from './KnobLayout';
 import HandleLayout from './HandleLayout';
-import { SwitchLayout } from './SwitchLayout';
+import SwitchLayout from './SwitchLayout';
 
 type InputLayoutPropTypes = {
   deviceId: string;
