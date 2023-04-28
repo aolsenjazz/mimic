@@ -70,9 +70,8 @@ type PropTypes = {
 
 export function HandleLayout(props: PropTypes) {
   const { input, deviceId } = props;
-  const { handleWidth, handleHeight, horizontal, status } = input;
+  const { handleWidth, handleHeight, horizontal, inverted, status } = input;
   const pitchbend = status === 'pitchbend';
-  const inverted = true;
 
   const [delta, setDelta] = useState(0); // handles animation, for efficiency
   const boundingBox = useRef<HTMLDivElement>(null);
