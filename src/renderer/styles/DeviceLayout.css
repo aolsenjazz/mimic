@@ -140,7 +140,7 @@
   transition: bottom 0.1s linear;
 }
 
-.device-layout .wheel {
+.device-layout .handle-input {
   position: relative;
   border: 1px solid;
   margin: 0 auto;
@@ -151,12 +151,12 @@
   align-items: center;
 }
 
-.device-layout .wheel .bounding-box {
+.device-layout .handle-input .bounding-box {
   position: absolute;
   display: flex;
 }
 
-.device-layout .wheel .bounding-box .inner {
+.device-layout .handle-input .bounding-box .inner {
   display: flex;
   transition-duration: 50ms;
   transition-property: transform;

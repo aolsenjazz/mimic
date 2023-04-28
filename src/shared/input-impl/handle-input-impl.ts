@@ -13,7 +13,12 @@ export class HandleInputImpl
 
   constructor(driver: InputDriverWithHandle, value?: MidiNumber) {
     super(driver);
-    this.value = value || this.value;
+
+    if (value !== undefined) {
+      this.value = value;
+    } else {
+      this.value = driver.status === 'pitchbend' ? 64 : 127;
+    }
   }
 
   toJSON() {

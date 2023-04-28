@@ -30,7 +30,7 @@ type PropTypes = {
 
 let lastValue = -1;
 
-export function EndlessKnob(props: PropTypes) {
+export default function EndlessKnob(props: PropTypes) {
   const { input, deviceId } = props;
 
   const [currentDeg, setCurrentDeg] = useState(180);

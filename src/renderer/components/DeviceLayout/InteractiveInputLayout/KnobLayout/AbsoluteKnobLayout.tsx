@@ -52,7 +52,7 @@ type PropTypes = {
 // the last value that was propagated
 let lastValue = -1;
 
-export function AbsoluteKnob(props: PropTypes) {
+export default function AbsoluteKnob(props: PropTypes) {
   const { input, deviceId } = props;
 
   const degrees = 270;
