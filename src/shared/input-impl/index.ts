@@ -7,21 +7,25 @@ import {
 import { KnobDriver, PadDriver } from '@shared/driver-types/input-drivers';
 
 import { HandleInputImpl } from './handle-input-impl';
-import { InteractiveInputImpl } from './interactive-input-impl';
+import { MonoInteractiveImpl } from './mono-interactive-input-impl';
 import { KnobInputImpl } from './knob-input-impl';
 import { NoninteractiveInputImpl } from './noninteractive-input-impl';
 import { PadImpl } from './pad-impl';
 import { SwitchImpl } from './switch-impl';
 import { BaseInputImpl } from './base-input-impl';
+import { InteractiveInputImpl } from './interactive-input-impl';
+import { XYImpl } from './xy-impl';
 
 export {
   HandleInputImpl,
-  InteractiveInputImpl,
+  MonoInteractiveImpl,
   KnobInputImpl,
   NoninteractiveInputImpl,
   PadImpl,
   SwitchImpl,
   BaseInputImpl,
+  InteractiveInputImpl,
+  XYImpl,
 };
 
 export function create(driver: InputDriver): BaseInputImpl {

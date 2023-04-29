@@ -2,11 +2,11 @@ import { SwitchDriver } from '@shared/driver-types';
 import { register } from '@shared/revivable';
 import { create } from '@shared/midi-array';
 
-import { InteractiveInputImpl } from './interactive-input-impl';
+import { MonoInteractiveImpl } from './mono-interactive-input-impl';
 
 @register
 export class SwitchImpl
-  extends InteractiveInputImpl<SwitchDriver>
+  extends MonoInteractiveImpl<SwitchDriver>
   implements SwitchDriver
 {
   currentStep: number;

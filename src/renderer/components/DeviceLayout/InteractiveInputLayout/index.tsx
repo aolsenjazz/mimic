@@ -4,12 +4,14 @@ import {
   SwitchImpl,
   HandleInputImpl,
   InteractiveInputImpl,
+  XYImpl,
 } from '@shared/input-impl';
 
 import Pad from './PadLayout';
 import KnobLayout from './KnobLayout';
 import HandleLayout from './HandleLayout';
 import SwitchLayout from './SwitchLayout';
+import XYLayout from './XYLayout';
 
 type InputLayoutPropTypes = {
   deviceId: string;
@@ -29,6 +31,10 @@ export default function InteractiveInputLayout(props: InputLayoutPropTypes) {
 
   if (input instanceof SwitchImpl) {
     return <SwitchLayout deviceId={deviceId} input={input} />;
+  }
+
+  if (input instanceof XYImpl) {
+    return <XYLayout deviceId={deviceId} input={input} />;
   }
 
   const handleImpl = input as HandleInputImpl;

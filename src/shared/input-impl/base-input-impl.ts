@@ -37,8 +37,4 @@ export class BaseInputImpl<T extends InputDriver = InputDriver>
   get width() {
     return this.driver.width;
   }
-
-  get style() {
-    return this.driver.style;
-  }
 }

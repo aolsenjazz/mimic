@@ -1,34 +1,19 @@
+import { XYImpl } from '@shared/input-impl';
+
 type PropTypes = {
-  isXPitchbend: boolean;
-  isYPitchbend: boolean;
-  xMax: number;
-  yMax: number;
-  xValue: number;
-  yValue: number;
-  width: string;
-  height: string;
-  handleWidth: string;
-  handleHeight: string;
-  shape: string;
+  deviceId: string;
+  input: XYImpl;
 };
 
 export default function XYLayout(props: PropTypes) {
-  const {
-    width,
-    isXPitchbend,
-    isYPitchbend,
-    xMax,
-    yMax,
-    height,
-    xValue,
-    yValue,
-    shape,
-    handleWidth,
-    handleHeight,
-  } = props;
+  const { deviceId, input } = props;
+  const { x, y, width, height, shape } = input;
+  const { handleWidth, handleHeight } = x;
 
-  const xShift = xValue / xMax;
-  const yShift = yValue / yMax;
+  const xShift = 0;
+  const yShift = 0;
+  const isXPitchbend = false;
+  const isYPitchbend = false;
 
   const iStyle = {
     width: `${width}`,

@@ -1,10 +1,10 @@
 import { KnobDriver } from '@shared/driver-types/input-drivers';
 import { create } from '@shared/midi-array';
 
-import { InteractiveInputImpl } from './interactive-input-impl';
+import { MonoInteractiveImpl } from './mono-interactive-input-impl';
 
 export class KnobInputImpl
-  extends InteractiveInputImpl<KnobDriver>
+  extends MonoInteractiveImpl<KnobDriver>
   implements KnobDriver
 {
   value?: MidiNumber;

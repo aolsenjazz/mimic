@@ -2,10 +2,10 @@ import { PadDriver } from '@shared/driver-types/input-drivers';
 import { create, MidiArray } from '@shared/midi-array';
 import { Color } from '@shared/driver-types';
 
-import { InteractiveInputImpl } from './interactive-input-impl';
+import { MonoInteractiveImpl } from './mono-interactive-input-impl';
 
 export class PadImpl
-  extends InteractiveInputImpl<PadDriver>
+  extends MonoInteractiveImpl<PadDriver>
   implements PadDriver
 {
   value?: MidiNumber;

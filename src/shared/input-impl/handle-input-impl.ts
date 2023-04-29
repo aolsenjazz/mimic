@@ -2,11 +2,11 @@ import { InputDriverWithHandle } from '@shared/driver-types';
 import { register } from '@shared/revivable';
 import { create } from '@shared/midi-array';
 
-import { InteractiveInputImpl } from './interactive-input-impl';
+import { MonoInteractiveImpl } from './mono-interactive-input-impl';
 
 @register
 export class HandleInputImpl
-  extends InteractiveInputImpl<InputDriverWithHandle>
+  extends MonoInteractiveImpl<InputDriverWithHandle>
   implements InputDriverWithHandle
 {
   value: MidiNumber = 127;

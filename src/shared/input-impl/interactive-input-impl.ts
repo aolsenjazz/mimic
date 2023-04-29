@@ -1,4 +1,4 @@
-import { InteractiveInputDriver } from '@shared/driver-types';
+import { InteractiveInputDriver } from '@shared/driver-types/input-drivers';
 import { register, Skeleton } from '@shared/revivable';
 import { MidiArray } from '@shared/midi-array';
 
@@ -21,34 +21,7 @@ export class InteractiveInputImpl<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleMessage(_msg: MidiArray) {}
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  applySentMessage(_msg: MidiArray) {}
-
   get interactive() {
     return true as const;
-  }
-
-  get response() {
-    return this.driver.response;
-  }
-
-  get number() {
-    return this.driver.number;
-  }
-
-  get channel() {
-    return this.driver.channel;
-  }
-
-  get status() {
-    return this.driver.status;
-  }
-
-  get availableColors() {
-    return this.driver.availableColors;
-  }
-
-  get availableFx() {
-    return this.driver.availableFx;
   }
 }
