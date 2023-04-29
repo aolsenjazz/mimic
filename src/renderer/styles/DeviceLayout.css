@@ -149,6 +149,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-color: #bcbec0;
 }
 
 .device-layout .handle-input .bounding-box {
@@ -158,8 +159,8 @@
 
 .device-layout .handle-input .bounding-box .inner {
   display: flex;
-  transition-duration: 50ms;
-  transition-property: transform;
+  transition-property: margin-left margin-top;
+  transition-duration: 75ms;
   border: 1px solid;
   position: absolute;
 }
@@ -167,6 +168,15 @@
 .device-layout .xy {
   position: relative;
   border: 1px solid;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.device-layout .xy .bounding-box {
+  position: relative;
 }
 
 .device-layout .xy .inner {
@@ -174,6 +184,9 @@
   border-radius: 100%;
   position: absolute;
   background-color: #e6e2e3;
+  transform: translate(-50%, -50%);
+  transition-property: margin-left margin-top;
+  transition-duration: 75ms;
 }
 
 .device-layout .svg-wrapper {

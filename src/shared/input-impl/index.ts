@@ -4,7 +4,11 @@ import {
   SwitchDriver,
   InputDriverWithHandle,
 } from '@shared/driver-types';
-import { KnobDriver, PadDriver } from '@shared/driver-types/input-drivers';
+import {
+  KnobDriver,
+  PadDriver,
+  XYDriver,
+} from '@shared/driver-types/input-drivers';
 
 import { HandleInputImpl } from './handle-input-impl';
 import { MonoInteractiveImpl } from './mono-interactive-input-impl';
@@ -34,6 +38,7 @@ export function create(driver: InputDriver): BaseInputImpl {
   if (driver.type === 'knob') return new KnobInputImpl(driver as KnobDriver);
   if (driver.type === 'switch') return new SwitchImpl(driver as SwitchDriver);
   if (driver.type === 'pad') return new PadImpl(driver as PadDriver);
+  if (driver.type === 'xy') return new XYImpl(driver as XYDriver);
 
   return new HandleInputImpl(driver as InputDriverWithHandle);
 }
