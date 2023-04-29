@@ -130,19 +130,38 @@ export default class MenuBuilder {
         },
       ],
     };
-    const drivers = Array.from(DRIVERS.values()).filter(
-      (d) => d.name !== 'Anonymous'
+    const devices = Array.from(DRIVERS.values()).filter(
+      (d) => d.name !== 'Anonymous' && d.type === 'normal'
+    );
+    const adapters = Array.from(DRIVERS.values()).filter(
+      (d) => d.type === 'adapter'
     );
     const subMenuNew: DarwinMenuItemConstructorOptions = {
       label: 'New',
-      submenu: drivers.map((driver) => {
-        return {
-          label: driver.name,
-          click: () => {
-            this.background.addDevice(driver.name);
-          },
-        };
-      }),
+      submenu: [
+        {
+          label: 'Adapters',
+          submenu: adapters.map((adapter) => {
+            return {
+              label: adapter.name,
+              click: () => {
+                this.background.addDevice(adapter.name);
+              },
+            };
+          }),
+        },
+        {
+          label: 'Devices',
+          submenu: devices.map((driver) => {
+            return {
+              label: driver.name,
+              click: () => {
+                this.background.addDevice(driver.name);
+              },
+            };
+          }),
+        },
+      ],
     };
     const subMenuWindow: DarwinMenuItemConstructorOptions = {
       label: 'Window',

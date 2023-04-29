@@ -8,7 +8,7 @@ import { InputGridImpl } from './input-grid-impl';
 
 @register
 export class ConnectableDevice implements DeviceDriver {
-  connected = true;
+  protected conn = true;
 
   driver: DeviceDriver;
 
@@ -46,6 +46,14 @@ export class ConnectableDevice implements DeviceDriver {
       .forEach((i) => {
         (i as InteractiveInputImpl).handleMessage(msg);
       });
+  }
+
+  get connected() {
+    return this.conn;
+  }
+
+  set connected(connected: boolean) {
+    this.conn = connected;
   }
 
   get name() {

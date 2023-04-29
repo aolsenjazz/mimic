@@ -1,7 +1,7 @@
-import { DeviceDriver } from '@shared/driver-types';
-
+import { AdapterDevice } from '@shared/adapter-device';
 import { ConnectableDevice } from '@shared/connectable-device';
 
+import FivePinDropdown from './FivePinDropdown';
 import DeviceIcon from '../DeviceIcon';
 import CloseButton from './CloseButton';
 import PowerButton from './PowerButton';
@@ -15,24 +15,20 @@ function statusFor(connected: boolean) {
 }
 
 type PropTypes = {
-  name: string;
-  id: string;
+  device: ConnectableDevice;
   onClick: () => void;
   active: boolean;
-  connected: boolean;
-  driver: DeviceDriver;
   setDevices: (devices: ConnectableDevice[]) => void;
   devices: ConnectableDevice[];
 };
 
 export default function DeviceListItem(props: PropTypes) {
-  const { onClick, active, connected, name, id, driver, devices, setDevices } =
-    props;
+  const { onClick, active, devices, setDevices, device } = props;
 
   return (
     <div className={`device-list-item ${active ? 'active' : ''}`}>
       <div className="device-icon-container">
-        <DeviceIcon driver={driver} active={active} />
+        <DeviceIcon driver={device.driver} active={active} />
       </div>
       <div
         className="device-list-item-label"
@@ -42,19 +38,26 @@ export default function DeviceListItem(props: PropTypes) {
         onKeyDown={onClick}
       >
         <div className="heading-line">
-          <h2>{name}</h2>
+          <h2>{device.name}</h2>
           <div className="heading-line-controls">
             <PowerButton
-              power={connected}
+              power={device.connected}
               setDevices={setDevices}
               devices={devices}
-              deviceId={id}
+              deviceId={device.id}
             />
-            <CloseButton deviceId={id} />
+            <CloseButton deviceId={device.id} />
           </div>
         </div>
-        <div className={`connection-color ${cssClassFor(connected)}`} />
-        <p className="connection-status">{statusFor(connected)}</p>
+        {device instanceof AdapterDevice ? (
+          <FivePinDropdown
+            device={device}
+            setDevices={setDevices}
+            devices={devices}
+          />
+        ) : null}
+        <div className={`connection-color ${cssClassFor(device.connected)}`} />
+        <p className="connection-status">{statusFor(device.connected)}</p>
       </div>
     </div>
   );

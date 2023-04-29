@@ -21,7 +21,6 @@
   width: 220px;
   position: relative;
   display: inline-block;
-  height: 40px;
   text-align: left;
   border-bottom: 1px solid #e6e6e6;
   padding-bottom: 4px;
@@ -114,20 +113,23 @@
 .device-list-item .device-icon-container {
   width: 36px;
   height: 36px;
-  left: 0;
-  top: 0;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 6px;
 }
 
 .device-list-item .device-list-item-label {
-  left: 46px;
-  position: absolute;
-  top: 0;
   font-weight: bold;
+  display: inline-block;
   cursor: pointer;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   width: calc(100% - 48px);
+}
+
+.device-list-item .device-list-item-label .ios-select {
+  margin-bottom: 5px;
 }
 
 .device-list-item .connection-color {

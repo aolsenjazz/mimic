@@ -1,5 +1,7 @@
+import { AdapterDevice } from '@shared/adapter-device';
 import { ConnectableDevice } from '@shared/connectable-device';
 
+import UsbView from './UsbView';
 import DeviceLayoutWrapper from './DeviceLayoutWrapper';
 import HowToConnect from './HowToConnect';
 
@@ -14,8 +16,16 @@ export default function DevicePanel(props: PropTypes) {
 
   if (device === undefined) {
     Element = <HowToConnect />;
+  } else if (device instanceof AdapterDevice) {
+    if (device.child === undefined) {
+      Element = <UsbView />;
+    } else {
+      Element = (
+        <DeviceLayoutWrapper device={device.child} deviceId={device.id} />
+      );
+    }
   } else {
-    Element = <DeviceLayoutWrapper device={device} />;
+    Element = <DeviceLayoutWrapper device={device} deviceId={device.id} />;
   }
 
   return (

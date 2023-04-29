@@ -4,12 +4,12 @@ import { ConnectableDevice } from './connectable-device';
 
 @register
 export class AdapterDevice extends ConnectableDevice {
-  child?: DeviceDriver;
+  child?: ConnectableDevice;
 
   constructor(
     driver: DeviceDriver,
     siblingIndex: number,
-    child?: DeviceDriver
+    child?: ConnectableDevice
   ) {
     super(driver, siblingIndex);
     this.child = child;
@@ -17,9 +17,21 @@ export class AdapterDevice extends ConnectableDevice {
 
   toJSON() {
     return {
-      name: AdapterDevice.constructor.name,
+      name: this.constructor.name,
       args: [this.driver, this.siblingIndex, this.child || []],
     };
+  }
+
+  get connected() {
+    return this.conn;
+  }
+
+  set connected(connected: boolean) {
+    this.conn = connected;
+
+    if (this.child !== undefined) {
+      this.child.connected = connected;
+    }
   }
 
   get name() {

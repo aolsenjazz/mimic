@@ -5,10 +5,11 @@ import InputGridLayout from './InputGridLayout';
 
 type PropTypes = {
   device: ConnectableDevice;
+  deviceId: string;
 };
 
 export default function DeviceLayout(props: PropTypes) {
-  const { device } = props;
+  const { device, deviceId } = props;
 
   return (
     <div
@@ -30,7 +31,7 @@ export default function DeviceLayout(props: PropTypes) {
             deviceHeight={device.height}
             channel={device.keyboard.channel}
             defaultOctave={device.keyboard.defaultOctave}
-            deviceId={device.id}
+            deviceId={deviceId}
             enabled={device.keyboard.enabled}
           />
         ) : null}
@@ -39,7 +40,7 @@ export default function DeviceLayout(props: PropTypes) {
           return (
             <InputGridLayout
               key={inputGrid.id}
-              deviceId={device.id}
+              deviceId={deviceId}
               grid={inputGrid}
               deviceWidth={device.width}
               deviceHeight={device.height}

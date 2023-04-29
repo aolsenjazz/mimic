@@ -38,12 +38,9 @@ export default function DeviceList(props: PropTypes) {
     return (
       <DeviceListItem
         key={device.id}
-        id={device.id}
-        driver={device.driver}
         onClick={() => setActiveDev(device)}
         active={activeDev !== undefined && activeDev.id === device.id}
-        connected={device.connected}
-        name={device.name}
+        device={device}
         setDevices={setDevices}
         devices={devices}
       />

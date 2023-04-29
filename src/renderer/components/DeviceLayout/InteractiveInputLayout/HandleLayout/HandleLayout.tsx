@@ -52,6 +52,7 @@ type PropTypes = {
   deviceId: string;
 };
 
+// TODO: this class can be cleaned up and be more similar to XYLayout
 export default function HandleLayout(props: PropTypes) {
   const { input, deviceId } = props;
   const { handleHeight, inverted, status } = input;
