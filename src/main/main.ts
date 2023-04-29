@@ -65,9 +65,9 @@ const createWindow = async () => {
     height: 600,
     transparent: true,
     frame: false,
+    titleBarStyle: 'hiddenInset',
     minHeight: 312,
     minWidth: 850,
-    titleBarStyle: os.platform() === 'darwin' ? 'hiddenInset' : 'default',
     icon: getAssetPath('icon.png'),
     webPreferences: {
       contextIsolation: true,
