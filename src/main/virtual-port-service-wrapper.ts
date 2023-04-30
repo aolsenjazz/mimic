@@ -50,6 +50,7 @@ export class VirtualPortServiceWrapper {
 
   send(deviceId: string, msg: MidiArray) {
     this.portService.send(msg, deviceId);
+    windowService.sendConfirmation(deviceId, msg.array);
   }
 
   addDevice(driver: DeviceDriver) {

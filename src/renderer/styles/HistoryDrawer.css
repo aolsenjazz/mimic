@@ -30,4 +30,40 @@
   border: 1px solid #dbd4d1;
   flex: 1 0 0;
   margin-bottom: 8px;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.history-list table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  color: #2e2e2e;
+}
+
+.history-list .table * {
+  font-family: arial;
+  font-weight: normal;
+  font-size: 0.91em;
+}
+
+.history-list table th {
+  border-right: 1px solid #dbd4d1;
+  padding: 4px;
+}
+
+.history-list table th:last-of-type {
+  border-right: none;
+}
+
+.history-list .table thead tr:first-of-type {
+  border-bottom: 1px solid #dbd4d1;
+}
+
+.history-list .table tr {
+  width: 100%;
+}
+
+.history-list .table td {
+  padding: 0 4px 0 4px;
 }

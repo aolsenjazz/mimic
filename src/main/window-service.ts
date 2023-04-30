@@ -2,15 +2,19 @@ import { BrowserWindow } from 'electron';
 
 import { ConnectableDevice } from '@shared/connectable-device';
 import { stringify } from '@shared/util';
-import { DEVICES, MSG } from '../ipc-channels';
+import { DEVICES, MSG, CONFIRM } from '../ipc-channels';
 
 class WindowService {
   sendDevices(devices: ConnectableDevice[]) {
     this.#send(DEVICES, stringify(devices));
   }
 
-  sendMsg(id: string, msg: MidiTuple) {
+  sendMsg(id: string, msg: NumberArrayWithStatus) {
     this.#send(MSG, id, msg);
+  }
+
+  sendConfirmation(id: string, msg: NumberArrayWithStatus) {
+    this.#send(CONFIRM, id, msg);
   }
 
   /**

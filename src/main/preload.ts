@@ -2,7 +2,15 @@ import { IpcRendererEvent, ipcRenderer, contextBridge } from 'electron';
 
 import { MidiArray } from '@shared/midi-array';
 
-import { DEVICES, OS, REMOVE, POWERON, POWEROFF, MSG } from '../ipc-channels';
+import {
+  DEVICES,
+  OS,
+  REMOVE,
+  POWERON,
+  POWEROFF,
+  MSG,
+  CONFIRM,
+} from '../ipc-channels';
 
 /**
  * Generic wrapper around ipcRenderer.on() and ipcRenderer.removeListener()
@@ -48,6 +56,10 @@ const deviceService = {
 
   onMsg(func: (deviceId: string, msg: NumberArrayWithStatus) => void) {
     return addOnChangeListener(MSG, func);
+  },
+
+  onConfirmation(func: (deviceId: string, msg: NumberArrayWithStatus) => void) {
+    return addOnChangeListener(CONFIRM, func);
   },
 };
 
