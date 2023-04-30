@@ -1,3 +1,4 @@
+@import './DragBoundary';
 @import './IosSelect.css';
 @import './IosButton.css';
 @import './DeviceList.css';
@@ -11,6 +12,7 @@
 @import './HowToConnect.css';
 @import './DevicePanel.css';
 @import './Keyboard.css';
+@import './HistoryDrawer.css';
 
 * {
   margin: 0;

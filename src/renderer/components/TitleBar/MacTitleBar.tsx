@@ -19,20 +19,18 @@ export default function TitleBar(props: PropTypes) {
   } = props;
 
   return (
-    <>
-      <div id="title-bar">
-        <div id="drag-region">
-          <div id="no-shadow" />
-          <h1 id="title">Mimic</h1>
-          <div id="shadow" />
-        </div>
-        <DrawerToggles
-          showLeftDrawer={showLeftDrawer}
-          showRightDrawer={showRightDrawer}
-          setShowLeftDrawer={setShowLeftDrawer}
-          setShowRightDrawer={setShowRightDrawer}
-        />
+    <div id="title-bar">
+      <div id="drag-region">
+        <div id="no-shadow" />
+        <h1 id="title">Mimic</h1>
+        <div id="shadow" />
       </div>
-    </>
+      <DrawerToggles
+        showLeftDrawer={showLeftDrawer}
+        showRightDrawer={showRightDrawer}
+        setShowLeftDrawer={setShowLeftDrawer}
+        setShowRightDrawer={setShowRightDrawer}
+      />
+    </div>
   );
 }

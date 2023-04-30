@@ -21,14 +21,18 @@ export default function DrawerToggles(props: PropTypes) {
   return (
     <div className="drawer-toggles">
       <img
-        src={showLeftDrawer ? DrawerLeftClosed : DrawerLeftOpen}
+        src={showLeftDrawer ? DrawerLeftOpen : DrawerLeftClosed}
         alt={showLeftDrawer ? 'show left drawer' : 'close left drawer'}
+        onClick={() => setShowLeftDrawer(!showLeftDrawer)}
         height="18"
+        role="presentation"
       />
       <img
-        src={showRightDrawer ? DrawerRightClosed : DrawerRightOpen}
+        src={showRightDrawer ? DrawerRightOpen : DrawerRightClosed}
         alt={showRightDrawer ? 'show right drawer' : 'close right drawer'}
         height={18}
+        onClick={() => setShowRightDrawer(!showRightDrawer)}
+        role="presentation"
       />
     </div>
   );

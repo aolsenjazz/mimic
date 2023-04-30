@@ -1,0 +1,10 @@
+.drag-boundary {
+  cursor: ns-resize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drag-boundary .marker {
+  background-color: #dbd4d1;
+}

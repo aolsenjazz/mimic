@@ -1,0 +1,33 @@
+#history-drawer {
+  background-color: #f4f0f1;
+  z-index: 1000;
+  transition-property: flex;
+  transition-duration: 100ms;
+  overflow-x: hidden;
+}
+
+#history-drawer .table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+#history-drawer .history-list {
+  width: calc(100% - 12px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#history-drawer .history-list h6 {
+  flex: 0 0 24px;
+  line-height: 24px;
+}
+
+#history-drawer .history-list .table {
+  background-color: white;
+  border: 1px solid #dbd4d1;
+  flex: 1 0 0;
+  margin-bottom: 8px;
+}

@@ -6,6 +6,7 @@ import { parse } from '@shared/util';
 
 import TitleBar from './components/TitleBar';
 import DeviceList from './components/DeviceList';
+import HistoryPanel from './components/HistoryDrawer';
 import DevicePanel from './components/DevicePanel';
 import MessageListener from './MessageListener';
 
@@ -22,6 +23,8 @@ document.body.ondragover = (event) => {
 export default function App() {
   const [devices, setDevices] = useState<ConnectableDevice[]>([]);
   const [activeDev, setActiveDev] = useState<ConnectableDevice | undefined>();
+  const [showLeftDrawer, setShowLeftDrawer] = useState(true);
+  const [showRightDrawer, setShowRightDrawer] = useState(true);
 
   // when background intialized devices changes, update here
   useEffect(() => {
@@ -54,15 +57,22 @@ export default function App() {
 
   return (
     <>
-      <TitleBar />
+      <TitleBar
+        showLeftDrawer={showLeftDrawer}
+        setShowLeftDrawer={setShowLeftDrawer}
+        showRightDrawer={showRightDrawer}
+        setShowRightDrawer={setShowRightDrawer}
+      />
       <div id="main-content">
         <DeviceList
           devices={devices}
           activeDev={activeDev}
           setActiveDev={setActiveDev}
           setDevices={setDevices}
+          show={showLeftDrawer}
         />
         <DevicePanel device={activeDev} />
+        <HistoryPanel show={showRightDrawer} />
         <MessageListener devices={devices} setDevices={setDevices} />
       </div>
     </>

@@ -6,7 +6,6 @@ import {
   REACT_DEVELOPER_TOOLS,
 } from 'electron-extension-installer';
 import log from 'electron-log';
-import os from 'os';
 
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -61,7 +60,7 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
+    width: 1280,
     height: 600,
     transparent: true,
     frame: false,
