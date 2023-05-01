@@ -4,13 +4,7 @@
   }
 }
 
-@keyframes Blink {
-  50.0% {
-    background-color: transparent;
-  }
-}
-
-@keyframes Pulse {
+@keyframes pulse {
   50.0% {
     background-color: transparent;
   }
@@ -159,8 +153,6 @@
 
 .device-layout .handle-input .bounding-box .inner {
   display: flex;
-  transition-property: margin-left margin-top;
-  transition-duration: 75ms;
   border: 1px solid;
   position: absolute;
 }

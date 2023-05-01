@@ -4,6 +4,8 @@
   transition-property: flex;
   transition-duration: 100ms;
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 #history-drawer .table-container {
@@ -11,28 +13,44 @@
   display: flex;
   justify-content: center;
   align-self: center;
+  min-height: 40px;
+  max-height: calc(100% - 108px);
+  margin-bottom: 8px;
+}
+
+#history-drawer > div {
+  width: calc(100% - 16px);
+  height: calc(100% - 12px);
 }
 
 #history-drawer .history-list {
-  width: calc(100% - 12px);
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-#history-drawer .history-list h6 {
+#history-drawer .history-list .top {
   flex: 0 0 24px;
+  height: 24px;
+}
+
+#history-drawer .history-list .top * {
   line-height: 24px;
+  display: inline-block;
+}
+
+#history-drawer .history-list .top .clear {
+  color: #3a84e9;
+  float: right;
+  cursor: point;
+  text-decoration: underline;
+  font-size: 0.65em;
+  cursor: pointer;
 }
 
 #history-drawer .history-list .table {
   background-color: white;
   border: 1px solid #dbd4d1;
-  flex: 1 0 0;
-  margin-bottom: 8px;
-  overflow-y: overlay;
-  overflow-x: hidden;
-  height: 100%;
+  height: calc(100% - 24px);
 }
 
 .history-list table {
@@ -41,6 +59,21 @@
   table-layout: fixed;
   border-collapse: collapse;
   color: #2e2e2e;
+  height: 100%;
+  display: block;
+}
+table thead {
+  height: 20px;
+  width: 100%;
+  display: block;
+}
+
+table tbody {
+  overflow-x: overlay;
+  width: 100%;
+  display: block;
+  overflow-y: overlay;
+  height: calc(100% - 20px);
 }
 
 .history-list .table * {
@@ -49,12 +82,20 @@
   font-size: 0.91em;
 }
 
-.history-list table th {
-  padding: 4px;
+table th {
+  padding: 0 4px 0 4px;
+  line-height: 20px;
+  background-color: white;
+}
+
+.history-list table th,
+.history-list table td {
   position: relative;
   word-break: break-all;
   white-space: nowrap;
+  text-overflow: ellipsis;
   overflow-x: hidden;
+  display: inline-block;
 }
 
 .history-list table th .drag-boundary {
@@ -74,8 +115,10 @@
 
 .history-list .table tr {
   width: 100%;
+  display: block;
 }
 
 .history-list .table td {
   padding: 0 4px 0 4px;
+  display: inline-block;
 }

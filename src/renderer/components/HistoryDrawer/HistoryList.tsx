@@ -3,16 +3,17 @@ import { ResizeableTable } from '../ResizeableTable';
 export type Row = {
   time: string;
   deviceId: string;
-  message: NumberArrayWithStatus;
+  message: string;
 };
 
 type PropTypes = {
   title: string;
   data: Row[];
+  doClear: () => void;
 };
 
 export function HistoryList(props: PropTypes) {
-  const { title, data } = props;
+  const { title, data, doClear } = props;
 
   const columns = [
     {
@@ -31,7 +32,12 @@ export function HistoryList(props: PropTypes) {
 
   return (
     <div className="history-list">
-      <h6>{title}</h6>
+      <div className="top">
+        <h6>{title}</h6>
+        <p className="clear" onClick={doClear} role="presentation">
+          clear
+        </p>
+      </div>
       <div className="table">
         <ResizeableTable rows={data} columns={columns} />
       </div>

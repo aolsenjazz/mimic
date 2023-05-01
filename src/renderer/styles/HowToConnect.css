@@ -1,8 +1,10 @@
 #how-to-connect {
   width: 80%;
-  margin-left: 10%;
-  margin-top: calc(50vh);
-  transform: translateY(-50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
 }
 
 #how-to-connect p {

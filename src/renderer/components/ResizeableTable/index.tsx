@@ -44,10 +44,10 @@ export function ResizeableTable(props: PropTypes) {
       newWidth2 = bound(newWidth2, basePercent);
       widths[index + 1] = newWidth2;
 
+      // modify the remaining columns widths
       const remainingWidth =
         widths.reduce((last, current) => last + current) - 100;
       const nOtherCols = nCols - 2;
-      // modify the remaining columns widths
       const otherCols = [...Array(nCols).keys()].filter(
         (k) => ![index, index + 1].includes(k)
       );
@@ -67,7 +67,7 @@ export function ResizeableTable(props: PropTypes) {
           {columns.map((c, i) => (
             <TH
               key={c.title}
-              width={`${widths[i]}%`}
+              width={`calc(${widths[i]}% - 8px)`}
               value={c.title}
               showResizer={i < nCols - 1}
               onDrag={(dx: number) => handleResize(i, dx)}
@@ -79,8 +79,15 @@ export function ResizeableTable(props: PropTypes) {
         {rows.map((r) => {
           return (
             <tr key={`${JSON.stringify(r)}`}>
-              {columns.map((c) => {
-                return <td>{r[c.accessor]}</td>;
+              {columns.map((c, i) => {
+                return (
+                  <td
+                    key={c.title}
+                    style={{ width: `calc(${widths[i]}% - 8px)` }}
+                  >
+                    {r[c.accessor]}
+                  </td>
+                );
               })}
             </tr>
           );

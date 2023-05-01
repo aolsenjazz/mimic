@@ -1,4 +1,5 @@
 import { useEffect, useCallback, MouseEvent } from 'react';
+import styled from 'styled-components';
 
 import { PadImpl } from '@shared/input-impl';
 import { MidiArray } from '@shared/midi-array';
@@ -9,6 +10,10 @@ type PropTypes = {
   deviceId: string;
   pad: PadImpl;
 };
+
+const Div = styled.div<{ animation: string }>`
+  animation: ${(props) => props.animation} 500ms linear infinite;
+`;
 
 export default function Pad(props: PropTypes) {
   const { deviceId, pad } = props;
@@ -35,9 +40,12 @@ export default function Pad(props: PropTypes) {
   }, [pad, deviceId]);
 
   return (
-    <div
-      className="pad interactive-indicator"
+    <Div
+      className={`pad interactive-indicator ${
+        pad.color?.modifier ? pad.color?.modifier : ''
+      }`}
       role="presentation"
+      animation={pad.color?.modifier || ''}
       onMouseDown={cb}
       style={{
         borderRadius: pad.shape === 'circle' ? '100%' : 0,
