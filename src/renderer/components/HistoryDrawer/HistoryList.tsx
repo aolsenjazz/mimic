@@ -1,3 +1,5 @@
+import { ResizeableTable } from '../ResizeableTable';
+
 export type Row = {
   time: string;
   deviceId: string;
@@ -12,30 +14,26 @@ type PropTypes = {
 export function HistoryList(props: PropTypes) {
   const { title, data } = props;
 
+  const columns = [
+    {
+      title: 'Time',
+      accessor: 'time',
+    },
+    {
+      title: 'Device',
+      accessor: 'deviceId',
+    },
+    {
+      title: 'Message',
+      accessor: 'message',
+    },
+  ];
+
   return (
     <div className="history-list">
       <h6>{title}</h6>
       <div className="table">
-        <table>
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Device</th>
-              <th>Message</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((d) => {
-              return (
-                <tr key={`${JSON.stringify(d)}`}>
-                  <td>{d.time}</td>
-                  <td>{d.deviceId}</td>
-                  <td>{JSON.stringify(d.message)}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <ResizeableTable rows={data} columns={columns} />
       </div>
     </div>
   );

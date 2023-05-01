@@ -30,13 +30,15 @@
   border: 1px solid #dbd4d1;
   flex: 1 0 0;
   margin-bottom: 8px;
-  overflow-y: scroll;
+  overflow-y: overlay;
+  overflow-x: hidden;
   height: 100%;
 }
 
 .history-list table {
   width: 100%;
   text-align: left;
+  table-layout: fixed;
   border-collapse: collapse;
   color: #2e2e2e;
 }
@@ -48,8 +50,18 @@
 }
 
 .history-list table th {
-  border-right: 1px solid #dbd4d1;
   padding: 4px;
+  position: relative;
+  word-break: break-all;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.history-list table th .drag-boundary {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: white;
 }
 
 .history-list table th:last-of-type {
