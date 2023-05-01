@@ -32,6 +32,9 @@
     "release/build",
     "release/app/dist",
     ".erb/dll",
-    "src/helpers"
+    "src/helpers",
+    "packages/super-controller/src/renderer",
+    "packages/super-controller/src/main",
+    "packages/super-controller/src/helper"
   ]
 }
