@@ -9,6 +9,7 @@
 <p> 
 <small>
 <!-- DOWNLOAD INTEL -->
+<a href="https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-1.0.1-arm64.dmg">Download (Apple Silicon)</a>)
 <!-- END DOWNLOAD INTEL -->
 </small>
 </p>
