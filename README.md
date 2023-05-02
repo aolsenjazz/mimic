@@ -1,13 +1,28 @@
-<!-- DOWNLOAD INTEL -->
-[![Download dmg](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download dmg")](https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-1.0.1-arm64.dmg)
-<!-- END DOWNLOAD INTEL -->
 <!-- DOWNLOAD SILICON -->
-[![Download dmg](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download dmg")](https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-1.0.1.dmg)
-<!-- END DOWNLOAD SILICON -->
 <div align="center">
   <img width="200px" align="center"  src="https://user-images.githubusercontent.com/13665641/230733724-562d0b97-301f-4c86-bbfd-5cb7e85f9253.png" />
 </div>
 <h1 align="center">Mimic</h1>
+<table align="center">
+<tr>
+<th align="center">
+<img width="441" height="1">
+<p> 
+<small>
+<!-- DOWNLOAD INTEL --><a href="https://google.com">Download (Apple Intel)</a><!-- END DOWNLOAD INTEL -->
+</small>
+</p>
+</th>
+<th align="center">
+<img width="441" height="1">
+<p> 
+<small>
+<!-- DOWNLOAD SILICON --><a href="https://google.com">Download (Apple Silicon)</a><!-- DOWNLOAD SILICON -->
+</small>
+</p>
+</th>
+</tr>
+</table>
 <h3 align="center">Emulate popular MIDI devices for testing software and DAW configurations</h3>
 <!--<div align="center" style="margin-bottom: 200px;">
   <img src="https://img.shields.io/github/workflow/status/aolsenjazz/super-controller/Test"/>
