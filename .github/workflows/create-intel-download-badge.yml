@@ -1,10 +1,9 @@
-name: 'Download Button Action'
+name: 'Silicon Download Badge'
 
 on:
-  release:
-    types:
-      - published
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   release:
@@ -34,8 +33,8 @@ jobs:
           VERSION: '${{ steps.get-latest-release.outputs.tag_name }}'
           VERSION_NUM: '${{ steps.value.outputs.substring }}'
           COLOR: 'blue'
-          BEGIN_TAG: '<!-- BEGIN LATEST DOWNLOAD BUTTON -->'
-          END_TAG: '<!-- END LATEST DOWNLOAD BUTTON -->'
+          BEGIN_TAG: '<!-- DOWNLOAD SILICON -->'
+          END_TAG: '<!-- END DOWNLOAD SILICON -->'
         run: |
           UPDATE=$(cat README.md | perl -0777 -pe 's#(${{ env.BEGIN_TAG }})(?:.|\n)*?(${{ env.END_TAG }})#${1}\n[![Download ${{ env.FORMAT }}](https://custom-icon-badges.herokuapp.com/badge/-Download-${{ env.COLOR }}?style=for-the-badge&logo=download&logoColor=white "Download ${{ env.FORMAT }}")](https://github.com/${{ env.GITHUB_USER }}/${{ env.REPO }}/releases/download/${{ env.VERSION }}/Mimic-${{ env.VERSION_NUM }}.${{ env.FORMAT }})\n${2}#g')
           echo "${UPDATE}" > README.md
