@@ -1,17 +1,30 @@
+<div align="center">
+  <img width="200px" align="center"  src="https://user-images.githubusercontent.com/13665641/230733724-562d0b97-301f-4c86-bbfd-5cb7e85f9253.png" />
+</div>
+<h1 align="center">Mimic</h1>
+<table align="center">
+<tr>
+<th align="center">
+<img width="441" height="1">
+<p> 
+<small>
+<!-- DOWNLOAD INTEL -->
+<!-- END DOWNLOAD INTEL -->
+</small>
+</p>
+</th>
+<th align="center">
+<img width="441" height="1">
+<p> 
+<small>
 <!-- DOWNLOAD SILICON -->
-<a href="https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-1.0.1.dmg">Download (Apple Intel)</a>)
-<!-- END DOWNLOAD SILICON -->
+<!-- DOWNLOAD SILICON -->
 </small>
 </p>
 </th>
 </tr>
 </table>
 <h3 align="center">Emulate popular MIDI devices for testing software and DAW configurations</h3>
-<!--<div align="center" style="margin-bottom: 200px;">
-  <img src="https://img.shields.io/github/workflow/status/aolsenjazz/super-controller/Test"/>
-  <img src="https://img.shields.io/github/license/aolsenjazz/super-controller"/>
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"/>
-</div>-->
 
 - 🖥️ **Support** Mac OSX 10.11+ Intel/Silicon
 - 🎹 **Popular Devices** 20+ devices from multiple manufacturers
