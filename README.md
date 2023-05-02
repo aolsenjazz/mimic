@@ -1,3 +1,5 @@
+<!-- BEGIN LATEST DOWNLOAD BUTTON -->
+<!-- END LATEST DOWNLOAD BUTTON -->
 <div align="center">
   <img width="200px" align="center"  src="https://user-images.githubusercontent.com/13665641/230733724-562d0b97-301f-4c86-bbfd-5cb7e85f9253.png" />
 </div>
