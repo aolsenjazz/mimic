@@ -1,9 +1,13 @@
-name: 'Silicon Download Badge'
+asdf
+
+name: 'Intel Download Badge'
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ['Silicon Download Badge']
+    branches: [main]
+    types:
+      - completed
 
 jobs:
   release:
@@ -33,10 +37,10 @@ jobs:
           VERSION: '${{ steps.get-latest-release.outputs.tag_name }}'
           VERSION_NUM: '${{ steps.value.outputs.substring }}'
           COLOR: 'blue'
-          BEGIN_TAG: '<!-- DOWNLOAD SILICON -->'
-          END_TAG: '<!-- END DOWNLOAD SILICON -->'
+          BEGIN_TAG: '<!-- DOWNLOAD INTEL -->'
+          END_TAG: '<!-- END DOWNLOAD INTEL -->'
         run: |
-          UPDATE=$(cat README.md | perl -0777 -pe 's#(${{ env.BEGIN_TAG }})(?:.|\n)*?(${{ env.END_TAG }})#${1}\n<a href="https://github.com/${{ env.GITHUB_USER }}/${{ env.REPO }}/releases/download/${{ env.VERSION }}/Mimic-${{ env.VERSION_NUM }}.${{ env.FORMAT }}">Download (Apple Intel)</a>)\n${2}#g')
+          UPDATE=$(cat README.md | perl -0777 -pe 's#(${{ env.BEGIN_TAG }})(?:.|\n)*?(${{ env.END_TAG }})#${1}\n<a href="https://github.com/${{ env.GITHUB_USER }}/${{ env.REPO }}/releases/download/${{ env.VERSION }}/Mimic-${{ env.VERSION_NUM }}-arm64.${{ env.FORMAT }}">Download (Apple Silicon)</a>)\n${2}#g')
           echo "${UPDATE}" > README.md
 
       - uses: EndBug/add-and-commit@v7
