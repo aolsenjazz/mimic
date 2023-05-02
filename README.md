@@ -18,7 +18,7 @@
 <p> 
 <small>
 <!-- DOWNLOAD SILICON -->
-<!-- DOWNLOAD SILICON -->
+<!-- END DOWNLOAD SILICON -->
 </small>
 </p>
 </th>
