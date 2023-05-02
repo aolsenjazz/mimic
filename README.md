@@ -19,7 +19,7 @@
 <img width="441" height="1">
 <p> 
 <small>
-<!-- DOWNLOAD SILICON --><a href="https://google.com">Download (Apple Silicon)</a><!-- DOWNLOAD SILICON -->
+<!-- DOWNLOAD SILICON --><a href="https://google.com">Download (Apple Silicon)</a><!-- END DOWNLOAD SILICON -->
 </small>
 </p>
 </th>
