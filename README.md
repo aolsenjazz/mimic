@@ -1,5 +1,5 @@
 <!-- DOWNLOAD INTEL -->
-
+[![Download dmg](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download dmg")](https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-1.0.1.dmg)
 <!-- END DOWNLOAD INTEL -->
 <!-- DOWNLOAD SILICON -->
 
