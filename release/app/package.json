@@ -1,7 +1,7 @@
 {
   "name": "mimic",
   "productName": "Mimic",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MIDI device emulator for software + DAW testing",
   "license": "MIT",
   "author": {
