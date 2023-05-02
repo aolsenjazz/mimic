@@ -1,5 +1,5 @@
 <!-- BEGIN LATEST DOWNLOAD BUTTON -->
-[![Download dmg](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download dmg")](https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-v1.0.1.dmg)
+[![Download dmg](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download dmg")](https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-1.0.1.dmg)
 <!-- END LATEST DOWNLOAD BUTTON -->
 <div align="center">
   <img width="200px" align="center"  src="https://user-images.githubusercontent.com/13665641/230733724-562d0b97-301f-4c86-bbfd-5cb7e85f9253.png" />
