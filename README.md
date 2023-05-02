@@ -19,7 +19,7 @@
 <p> 
 <small>
 <!-- DOWNLOAD SILICON -->
-<a href="https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-1.0.1.dmg">Download (Apple Intel)</a>)
+<a href="https://github.com/aolsenjazz/mimic/releases/download/v1.0.1/Mimic-1.0.1.dmg">Download (Apple Intel)</a>
 <!-- END DOWNLOAD SILICON -->
 </small>
 </p>
