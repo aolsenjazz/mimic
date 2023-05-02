@@ -23,7 +23,7 @@ jobs:
         uses: bhowell2/github-substring-action@v1.0.0
         id: value
         with:
-          value: steps.get-latest-release.outputs.tag_name
+          value: ${{ steps.get-latest-release.outputs.tag_name }}
           index_of_str: 'v'
 
       - name: Readme Download Button Action
