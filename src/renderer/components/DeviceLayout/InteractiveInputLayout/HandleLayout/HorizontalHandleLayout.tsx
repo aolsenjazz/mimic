@@ -57,8 +57,8 @@ export default function HandleLayout(props: PropTypes) {
   const { handleWidth, inverted, status } = input;
   const pitchbend = status === 'pitchbend';
 
-  // TODO: this needs to be expressed as a percentage
   const [delta, setDelta] = useState(0); // handles animation, for efficiency
+  const [deltaPercent, setDeltaPercent] = useState(1); // sets the margin of slider handle as a percentage. lil smelly but oh well
   const boundingBox = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -90,6 +90,7 @@ export default function HandleLayout(props: PropTypes) {
         d = boundDelta(d, 0, hb);
 
         setDelta(d);
+        setDeltaPercent(d / hb);
 
         // convert to midi value, send
         let converted = convertRange(0, hb, 0, 127, d);
@@ -149,7 +150,7 @@ export default function HandleLayout(props: PropTypes) {
           style={{
             height: `100%`,
             width: `${(handleWidth / input.width) * 100}%`,
-            marginLeft: delta,
+            marginLeft: `${deltaPercent * 100}%`,
             transform: `translateX(-50%)`,
           }}
         />
