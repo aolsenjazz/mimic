@@ -137,9 +137,9 @@ export default function HandleLayout(props: PropTypes) {
         className="bounding-box"
         ref={boundingBox}
         style={{
-          left: 0,
-          justifyContent: 'top',
-          width: 'calc(100% - 2px)',
+          left: 0, // TODO: this rule belongs in css
+          justifyContent: 'top', // TODO: this rule belongs in css
+          width: 'calc(100% - 2px)', // TODO: this rule belongs in css
           height: `calc(100% - ${(handleHeight / input.height) * 100}%)`,
         }}
       >
@@ -149,9 +149,9 @@ export default function HandleLayout(props: PropTypes) {
           role="presentation"
           style={{
             height: `${(handleHeight / input.height) * 100}%`,
-            width: '100%',
+            width: '100%', // TODO: this rule belongs in css
             marginTop: delta,
-            transform: 'translateY(-50%)',
+            transform: 'translateY(-50%)', // TODO: this rule belongs in css
           }}
         />
       </div>
