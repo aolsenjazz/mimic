@@ -57,6 +57,7 @@ export default function HandleLayout(props: PropTypes) {
   const { handleWidth, inverted, status } = input;
   const pitchbend = status === 'pitchbend';
 
+  // TODO: this needs to be expressed as a percentage
   const [delta, setDelta] = useState(0); // handles animation, for efficiency
   const boundingBox = useRef<HTMLDivElement>(null);
 

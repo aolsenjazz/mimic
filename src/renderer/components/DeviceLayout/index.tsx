@@ -14,7 +14,7 @@ export default function DeviceLayout(props: PropTypes) {
   return (
     <div
       style={{
-        '--r': `${device.width}/${device.height}`,
+        aspectRatio: `${device.width}/${device.height}`,
         ...device.style,
       }}
       className={`device-layout ${device.connected ? 'connected' : ''}`}
