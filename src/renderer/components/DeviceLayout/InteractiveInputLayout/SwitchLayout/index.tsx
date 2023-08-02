@@ -10,7 +10,7 @@ type PropTypes = {
 export default function SwitchInput(props: PropTypes) {
   const { input, deviceId } = props;
 
-  // normally, we'd use a HorizontalSwitchLayout. Not yet built
+  // TODO: normally, we'd use a HorizontalSwitchLayout. Not yet built
   return input.horizontal === true ? (
     <VerticalSwitchLayout deviceId={deviceId} input={input} />
   ) : (
