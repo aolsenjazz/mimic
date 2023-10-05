@@ -1,21 +1,24 @@
 #history-drawer {
   background-color: #f4f0f1;
   z-index: 1000;
-  transition-property: flex;
-  transition-duration: 100ms;
   overflow-x: hidden;
-  display: flex;
+  width: 100%;
   justify-content: center;
+  position: relative;
 }
 
 #history-drawer .table-container {
-  width: 100%;
-  display: flex;
+  width: calc(100% - 12px);
   justify-content: center;
   align-self: center;
-  min-height: 40px;
-  max-height: calc(100% - 108px);
-  margin-bottom: 8px;
+}
+
+#history-drawer .table-container:first-of-type {
+  padding-top: 0;
+}
+
+#history-drawer .table-container:last-of-type {
+  padding-bottom: 8px;
 }
 
 #history-drawer > div {
@@ -29,7 +32,6 @@
 }
 
 #history-drawer .history-list .top {
-  flex: 0 0 24px;
   height: 24px;
 }
 
@@ -50,7 +52,7 @@
 #history-drawer .history-list .table {
   background-color: white;
   border: 1px solid #dbd4d1;
-  height: calc(100% - 24px);
+  height: calc(100% - 26px);
 }
 
 .history-list table {

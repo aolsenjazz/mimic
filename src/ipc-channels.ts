@@ -5,3 +5,7 @@ export const POWERON = 'poweron';
 export const POWEROFF = 'poweroff';
 export const MSG = 'msg';
 export const CONFIRM = 'confirm';
+export const GET_LAYOUT = 'get_layout';
+export const SET_LAYOUT = 'set_layout';
+export const GET_LAYOUT_ITEM = 'get_layout_item';
+export const SET_LAYOUT_ITEM = 'set_layout_item';

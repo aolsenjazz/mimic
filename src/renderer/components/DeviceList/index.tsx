@@ -10,11 +10,10 @@ type PropTypes = {
   setActiveDev: (dev: ConnectableDevice | undefined) => void;
   setDevices: (dev: ConnectableDevice[]) => void;
   activeDev: ConnectableDevice | undefined;
-  show: boolean;
 };
 
 export default function DeviceList(props: PropTypes) {
-  const { devices, setActiveDev, activeDev, setDevices, show } = props;
+  const { devices, setActiveDev, activeDev, setDevices } = props;
 
   // Updated selectedId when anything changes
   useEffect(() => {
@@ -49,14 +48,8 @@ export default function DeviceList(props: PropTypes) {
   });
 
   return (
-    <div
-      id="device-list"
-      className="top-level"
-      style={{ flex: `0 0 ${show ? 230 : 0}px` }}
-    >
-      <div className="constant-width-wrap">
-        {elements.length > 0 ? elements : <NoDevicesView />}
-      </div>
+    <div id="device-list" className="top-level">
+      {elements.length > 0 ? elements : <NoDevicesView />}
     </div>
   );
 }

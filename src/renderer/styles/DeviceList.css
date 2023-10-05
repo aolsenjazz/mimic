@@ -1,37 +1,32 @@
 #device-list {
   background-color: #f4f0f1;
-  text-align: right;
+  text-align: left;
   overflow-y: overlay;
-  position: relative;
   z-index: 1000;
   max-height: calc(100vh - 30px);
-  transition-property: flex;
-  transition-duration: 100ms;
   overflow-x: hidden;
+  position: relative;
+  width: 100%;
 }
 
 #device-list #no-devices {
   text-align: center;
+  width: 100%;
   position: absolute;
   top: 50%;
-  width: 100%;
   transform: translateY(-50%);
 }
 
-#device-list > .constant-width-wrap {
-  min-width: 230px;
-  height: 100%;
-  position: relative;
-}
-
 .device-list-item {
-  width: 220px;
+  min-width: 220px;
   position: relative;
+  margin-left: 10px;
   display: inline-block;
   text-align: left;
   border-bottom: 1px solid #e6e6e6;
   padding-bottom: 4px;
   margin-top: 10px;
+  width: calc(100% - 15px);
 }
 
 .device-list-item:last-of-type {
@@ -74,6 +69,9 @@
 
 .device-list-item:hover .heading-line .heading-line-controls {
   display: inline-block !important;
+  position: absolute;
+  right: 6px;
+  background-color: #f4f0f1;
 }
 
 .device-list-item .heading-line .heading-line-controls > * {
@@ -132,7 +130,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  width: calc(100% - 48px);
+  width: calc(100% - 56px);
 }
 
 .device-list-item .device-list-item-label .ios-select {

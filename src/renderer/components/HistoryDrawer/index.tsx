@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
-import DragBoundary from '../DragBoundary';
 import { HistoryList, Row } from './HistoryList';
 
-const { deviceService } = window;
+const { deviceService, layoutService } = window;
 
 function currentTime() {
   const date = new Date();
@@ -14,20 +14,7 @@ function currentTime() {
   return `${hours}:${minutes}:${seconds}:${milliseconds}`;
 }
 
-function bound(n: number, lb: number, hb: number) {
-  return Math.max(Math.min(n, hb), lb);
-}
-
-type PropTypes = {
-  show: boolean;
-};
-
-export default function HistoryDrawer(props: PropTypes) {
-  const { show } = props;
-
-  const [topHeight, setTopHeight] = useState(50);
-  const [botHeight, setBotHeight] = useState(50);
-
+export default function HistoryDrawer() {
   const [sentMessages, setSentMessages] = useState<Row[]>([]);
   const [receivedMessages, setReceivedMessages] = useState<Row[]>([]);
   const parent = useRef<HTMLDivElement | null>(null);
@@ -77,55 +64,35 @@ export default function HistoryDrawer(props: PropTypes) {
       clearInterval(timer);
     };
   }, [receivedMessages, setReceivedMessages]);
-
-  const dragStart = useCallback(
-    (_dx: number, dy: number) => {
-      if (parent === null) return;
-
-      const parentRect = parent.current?.getBoundingClientRect()!;
-      const parentHeight = parentRect.bottom - parentRect.top;
-      const dyPercent = (dy / parentHeight) * 100;
-
-      const newTopHeight = bound(topHeight + dyPercent, 30, 70);
-      const newBotHeight = bound(botHeight - dyPercent, 30, 70);
-
-      setTopHeight(newTopHeight);
-      setBotHeight(newBotHeight);
-    },
-    [topHeight, setTopHeight, botHeight, setBotHeight]
-  );
-
   return (
-    <div
-      className="top-level"
-      id="history-drawer"
-      ref={parent}
-      style={{ flex: `0 0 ${show ? 300 : 0}px` }}
-    >
-      <div>
-        <div
-          className="table-container"
-          style={{ height: `calc(${topHeight}% - 8px)` }}
-        >
+    <div className="top-level" id="history-drawer" ref={parent}>
+      <PanelGroup
+        direction="vertical"
+        storage={layoutService}
+        autoSaveId="history-drawer"
+      >
+        <Panel className="table-container" minSize={25} id="sent-messages">
           <HistoryList
             title="Sent messages"
             data={sentMessages}
             doClear={() => setSentMessages([])}
           />
-        </div>
-        <DragBoundary width="100%" height={10} horizontal onDrag={dragStart} />
-        <div
-          className="table-container"
-          style={{ height: `calc(${botHeight}% - 8px)` }}
-        >
-          {' '}
+        </Panel>
+        <PanelResizeHandle
+          style={{
+            height: 6,
+            borderBottom: '1px solid #dbd4d1',
+            marginRight: 3,
+          }}
+        />
+        <Panel className="table-container" minSize={25} id="recevied-messages">
           <HistoryList
             title="Received messages"
             data={receivedMessages}
             doClear={() => setReceivedMessages([])}
           />
-        </div>
-      </div>
+        </Panel>
+      </PanelGroup>
     </div>
   );
 }

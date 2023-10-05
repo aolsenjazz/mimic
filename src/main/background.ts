@@ -9,7 +9,18 @@ import { create } from '@shared/midi-array';
 import { VirtualPortServiceWrapper as VirtualPortService } from './virtual-port-service-wrapper';
 import { windowService } from './window-service';
 
-import { REMOVE, OS, POWERON, POWEROFF, MSG } from '../ipc-channels';
+import {
+  REMOVE,
+  OS,
+  POWERON,
+  POWEROFF,
+  MSG,
+  GET_LAYOUT,
+  SET_LAYOUT,
+  GET_LAYOUT_ITEM,
+  SET_LAYOUT_ITEM,
+} from '../ipc-channels';
+import { LayoutParams, Store } from './store';
 
 export class Background {
   portService: VirtualPortService;
@@ -52,6 +63,22 @@ export class Background {
         this.portService.send(deviceId, create(msg));
       }
     );
+
+    ipcMain.on(GET_LAYOUT, (e: Event) => {
+      e.returnValue = Store.getLayoutParams();
+    });
+
+    ipcMain.on(SET_LAYOUT, (e: Event, lp: LayoutParams) => {
+      e.returnValue = Store.setLayoutParams(lp);
+    });
+
+    ipcMain.on(GET_LAYOUT_ITEM, (e: Event, s: string) => {
+      e.returnValue = Store.getLayoutItem(s);
+    });
+
+    ipcMain.on(SET_LAYOUT_ITEM, (e: Event, s: string, v: string) => {
+      e.returnValue = Store.setLayoutItem(s, v);
+    });
   }
 
   addDevice(dName: string) {

@@ -1,4 +1,5 @@
 import { IpcRendererEvent, ipcRenderer, contextBridge } from 'electron';
+import { PanelGroupStorage } from 'react-resizable-panels';
 
 import { MidiArray } from '@shared/midi-array';
 
@@ -10,7 +11,12 @@ import {
   POWEROFF,
   MSG,
   CONFIRM,
+  GET_LAYOUT_ITEM,
+  SET_LAYOUT_ITEM,
+  GET_LAYOUT,
+  SET_LAYOUT,
 } from '../ipc-channels';
+import { LayoutParams } from './store';
 
 /**
  * Generic wrapper around ipcRenderer.on() and ipcRenderer.removeListener()
@@ -75,8 +81,28 @@ const hostService = {
   },
 };
 
+const layoutService = {
+  getLayoutParams(): LayoutParams {
+    return ipcRenderer.sendSync(GET_LAYOUT);
+  },
+
+  setLayoutParams(lp: LayoutParams): void {
+    return ipcRenderer.sendSync(SET_LAYOUT, lp);
+  },
+
+  getItem(s: string): string | null {
+    return ipcRenderer.sendSync(GET_LAYOUT_ITEM, s);
+  },
+
+  setItem(s: string, v: string): void {
+    return ipcRenderer.sendSync(SET_LAYOUT_ITEM, s, v);
+  },
+};
+
+contextBridge.exposeInMainWorld('layoutService', layoutService);
 contextBridge.exposeInMainWorld('hostService', hostService);
 contextBridge.exposeInMainWorld('deviceService', deviceService);
 
 export type DeviceService = typeof deviceService;
 export type HostService = typeof hostService;
+export type LayoutService = typeof layoutService & PanelGroupStorage;

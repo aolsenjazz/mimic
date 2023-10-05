@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { MouseEvent as ReactMouseEvent, useCallback } from 'react';
 
 import Off from '@assets/power_off.svg';
 import On from '@assets/power_on.svg';
@@ -17,19 +17,27 @@ type PropTypes = {
 export default function PowerButton(props: PropTypes) {
   const { power, setDevices, devices, deviceId } = props;
 
-  const powerOn = useCallback(() => {
-    const dev = devices.filter((d) => d.id === deviceId)[0];
-    dev.connected = true;
-    setDevices([...devices]);
-    deviceService.powerOn(deviceId);
-  }, [devices, setDevices, deviceId]);
+  const powerOn = useCallback(
+    (e: ReactMouseEvent<HTMLDivElement, MouseEvent>) => {
+      e.stopPropagation();
+      const dev = devices.filter((d) => d.id === deviceId)[0];
+      dev.connected = true;
+      setDevices([...devices]);
+      deviceService.powerOn(deviceId);
+    },
+    [devices, setDevices, deviceId]
+  );
 
-  const powerOff = useCallback(() => {
-    const dev = devices.filter((d) => d.id === deviceId)[0];
-    dev.connected = false;
-    setDevices([...devices]);
-    deviceService.powerOff(deviceId);
-  }, [devices, setDevices, deviceId]);
+  const powerOff = useCallback(
+    (e: ReactMouseEvent<HTMLDivElement, MouseEvent>) => {
+      e.stopPropagation();
+      const dev = devices.filter((d) => d.id === deviceId)[0];
+      dev.connected = false;
+      setDevices([...devices]);
+      deviceService.powerOff(deviceId);
+    },
+    [devices, setDevices, deviceId]
+  );
 
   return (
     <div className="power-buton">
