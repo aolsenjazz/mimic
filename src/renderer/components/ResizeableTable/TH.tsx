@@ -16,6 +16,7 @@ export default function TH(props: PropTypes) {
       {showResizer === true ? (
         <DragBoundary
           horizontal={false}
+          align="center"
           width={6}
           height="100%"
           onDrag={onDrag}
