@@ -5,7 +5,7 @@ import { AdapterDevice } from '@shared/adapter-device';
 import { parse } from '@shared/util';
 
 import { PanelProvider } from './context/panel-context';
-import MainContent from './components/main-content';
+import MainContent from './components/MainContent';
 import MessageListener from './MessageListener';
 
 import './styles/App.global.css';
