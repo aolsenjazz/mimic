@@ -9,7 +9,7 @@
 <p> 
 <small>
 <!-- DOWNLOAD INTEL -->
-<a href="https://github.com/aolsenjazz/mimic/releases/download/v1.0.3/Mimic-1.0.3-arm64.dmg">Download (Apple Silicon)</a>
+<a href="https://github.com/aolsenjazz/mimic/releases/download/v1.0.4/Mimic-1.0.4-arm64.dmg">Download (Apple Silicon)</a>
 <!-- END DOWNLOAD INTEL -->
 </small>
 </p>
@@ -19,7 +19,7 @@
 <p> 
 <small>
 <!-- DOWNLOAD SILICON -->
-<a href="https://github.com/aolsenjazz/mimic/releases/download/v1.0.3/Mimic-1.0.3.dmg">Download (Apple Intel)</a>
+<a href="https://github.com/aolsenjazz/mimic/releases/download/v1.0.4/Mimic-1.0.4.dmg">Download (Apple Intel)</a>
 <!-- END DOWNLOAD SILICON -->
 </small>
 </p>
