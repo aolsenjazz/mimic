@@ -2,6 +2,9 @@
   <img width="200px" align="center"  src="https://user-images.githubusercontent.com/13665641/230733724-562d0b97-301f-4c86-bbfd-5cb7e85f9253.png" />
 </div>
 <h1 align="center">Mimic</h1>
+<p align="center">
+<img align="center" src="https://github.com/aolsenjazz/mimic/assets/13665641/673ea72d-aa20-4abd-843d-a50ce313c202" width="80%"/>
+</p>
 <table align="center">
 <tr>
 <th align="center">
